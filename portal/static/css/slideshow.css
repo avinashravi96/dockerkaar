@@ -1,0 +1,38 @@
+
+* {
+  margin: 0 auto;
+  padding: 0
+}
+
+body {
+  color: white;
+  font-family: 'Roboto',Arial, Helmet, sans-serif;
+}
+
+.text {
+  background: rgba(125,125,125,.5);
+  padding: 20px;
+}
+
+#background_cycler {
+  margin-top: 20vh;
+  margin-left: 2vw;
+  width: 70%;
+  height: 80%;
+  /*overflow: hidden;*/
+  position: absolute;
+  /*top: 0;*/
+  /*left: 0;*/
+  z-index: -1;
+}
+
+#background_cycler .img {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 90%;
+  height: 70%;
+  z-index: 1;
+}
+
+#background_cycler .img.active { z-index: 3; }
