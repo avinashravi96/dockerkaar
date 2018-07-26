@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Kaar</title>
+{% load staticfiles %} 
+    <meta charset="UTF-8">
+
+    <link rel="stylesheet" href="{% static 'css/slideshow.css' %}" />
+   <!-- <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:400,100,300,500"> -->
+        <link rel="stylesheet" href="{% static 'assets/bootstrap/css/bootstrap.min.css' %}">
+        <link rel="stylesheet" href="{% static 'assets/font-awesome/css/font-awesome.min.css' %}">
+        <link rel="stylesheet" href="{% static 'assets/css/form-elements.css' %}">
+        <link rel="stylesheet" href="{% static 'assets/css/style.css' %}">
+<script src="{% static 'js/jquery-latest.min.js' %}" ></script>
+
+    <!-- <script src="http://code.jquery.com/jquery-latest.min.js" type="text/javascript"></script> -->
+    <style type="text/css">
+    ::-webkit-scrollbar {
+    /*height: 12px;*/
+    width: 2px;
+    background: #000;
+}
+
+::-webkit-scrollbar-thumb {
+    background: silver;
+    -webkit-border-radius: 1ex;
+    -webkit-box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.75);
+}
+
+::-webkit-scrollbar-corner {
+    background: #000;
+}
+    .logotop{
+        left:0;
+        padding: 0;
+        margin-left: -64%;
+    }
+    .btn-link{
+        /*color: #930a0a;*/
+        /*color: black;*/
+        text-decoration: none;
+    }
+    .custom{
+        color: #930a0a;
+        cursor: pointer;
+    }
+	    .custom2{
+        background-color: #930a0a;
+        color:white;
+        cursor: pointer;
+    }
+    .tf{
+        width: 4%;
+    }
+
+    .collapse{
+        font-size: 12px;
+    }
+          .spinner-wrapper {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: white;
+    z-index: 99999;
+    height: 100%;
+    width: 100%;
+    overflow: hidden !important;
+    }
+
+    .bubblingG {
+        top: 50%;
+        left: 50%;
+        position: absolute;
+        margin-left: -40px;
+
+    }
+
+    .bubblingG {
+    text-align: center;
+    width:80px;
+    height:50px;
+    }
+
+    .bubblingG span {
+    display: inline-block;
+    vertical-align: middle;
+    width: 10px;
+    height: 10px;
+    margin: 25px auto;
+    -moz-border-radius: 50px;
+    -moz-animation: bubblingG 0.7s infinite alternate;
+    -webkit-border-radius: 50px;
+    -webkit-animation: bubblingG 0.7s infinite alternate;
+    -ms-border-radius: 50px;
+    -ms-animation: bubblingG 0.7s infinite alternate;
+    -o-border-radius: 50px;
+    -o-animation: bubblingG 0.7s infinite alternate;
+    border-radius: 50px;
+    animation: bubblingG 0.7s infinite alternate;
+    }
+
+    #bubblingG_1 {
+    -moz-animation-delay: 0s;
+    -webkit-animation-delay: 0s;
+    -ms-animation-delay: 0s;
+    -o-animation-delay: 0s;
+    animation-delay: 0s;
+    }
+
+    #bubblingG_2 {
+    -moz-animation-delay: 0.21s;
+    -webkit-animation-delay: 0.21s;
+    -ms-animation-delay: 0.21s;
+    -o-animation-delay: 0.21s;
+    animation-delay: 0.21s;
+    }
+
+    #bubblingG_3 {
+    -moz-animation-delay: 0.42s;
+    -webkit-animation-delay: 0.42s;
+    -ms-animation-delay: 0.42s;
+    -o-animation-delay: 0.42s;
+    animation-delay: 0.42s;
+    }
+
+    @-moz-keyframes bubblingG {
+    0% {
+    width: 10px;
+    height: 10px;
+    -moz-transform: translateY(0);
+    }
+
+    100% {
+    width: 24px;
+    height: 24px;
+    -moz-transform: translateY(-21px);
+    }
+
+    }
+
+    @-webkit-keyframes bubblingG {
+    0% {
+    width: 10px;
+    height: 10px;
+    -webkit-transform: translateY(0);
+    }
+
+    100% {
+    width: 24px;
+    height: 24px;
+    -webkit-transform: translateY(-21px);
+    }
+
+    }
+
+    @-ms-keyframes bubblingG {
+    0% {
+    width: 10px;
+    height: 10px;
+    -ms-transform: translateY(0);
+    }
+
+    100% {
+    width: 24px;
+    height: 24px;
+    -ms-transform: translateY(-21px);
+    }
+
+    }
+
+    @-o-keyframes bubblingG {
+    0% {
+    width: 10px;
+    height: 10px;
+    -o-transform: translateY(0);
+    }
+
+    100% {
+    width: 24px;
+    height: 24px;
+    -o-transform: translateY(-21px);
+    }
+
+    }
+
+    @keyframes bubblingG {
+    0% {
+    width: 10px;
+    height: 10px;
+    transform: translateY(0);
+    }
+
+    100% {
+    width: 24px;
+    height: 24px;
+    transform: translateY(-21px);
+    }
+
+    }
+
+  .bubblingG span {
+    background: #930a0a;
+    /*background: #F15234;*/
+  }
+
+
+.card {
+  background: #fff;
+  border-radius: 8px;
+  display: inline-block;
+  height: 500px;
+  margin: 1rem;
+  position: relative;
+  width: 400px;
+  margin-left: 60%;
+  margin-top: 12vh;
+}
+
+.card-1 {
+  box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+  transition: all 0.3s cubic-bezier(.25,.8,.25,1);
+}
+
+.card-1:hover {
+  box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+}
+.img{
+    /*background-image: linear-gradient(to bottom right,#002f4b,#dc4225);*/
+}
+
+.content{
+    margin:15px;
+}
+
+.btn-primary{
+    background:#930a0a;
+}
+
+
+
+/*.dropdown-toggle:focus,.dropdown-toggle:active,.dropdown-toggle:visited,.dropdown-toggle:hover{
+    background:#930a0a;
+    
+}
+*/
+.dropdown-menu{
+    height: auto;
+    max-height: 200px;
+    overflow-x: hidden;
+}
+
+@font-face{
+    font-family: "Myriad-Pro";  
+    src: url(/static/fonts/MyriadWebPro.ttf) ;
+}
+body{ font-family:Myriad-Pro; 
+
+    background: #f7f7f7;
+}
+
+.end {
+    width: 14% ;
+    height: 30px;
+    /*height: 10vh;*/
+    padding-right: 20px;
+}
+.end2{
+    width: 6%;
+
+}
+.foot{
+    /*margin-left: 50%;*/
+}
+html{
+    /*background: #f2efef;*/
+    /*z-index: -2;*/
+    justify-content: all;
+    text-align: justify;
+    overflow-x: hidden;
+}
+footer{
+    position:fixed;
+   left:0px;
+   bottom:12px;
+   /*z-index: -1;*/
+}
+.open{
+    color: blue;
+}
+/*
+.btn-primary:focus, .btn-primary:hover, .open>.dropdown-toggle.btn-primary {
+    color: #fff;
+    background-color: #930a0a;
+    
+}
+
+
+.btn-primary:hover,.signup:hover { opacity: 0.6; color: #fff !important; }
+
+.btn-primary:active ,.signup:active { outline: 0; opacity: 0.6; color: #fff !important; -moz-box-shadow: none; -webkit-box-shadow: none; box-shadow: none; }
+
+.btn-primary:focus,.singup:focus { outline: 0; opacity: 0.6; background: #930a0a; color: #fff !important; }
+
+.btn-primary:active:focus, .btn-primary.active:focus ,.signup:active:focus, .signup.active:focus { outline: 0; opacity: 0.6; background: #930a0a; color: #fff !important; }
+*/
+
+fieldset{
+    overflow-y: scrol;
+
+}
+
+.home{
+    width: 25%;
+}
+
+p{
+    font-size: 14px;
+    line-height: 3vh;
+}
+
+.form-box{
+    /*max-height: 100px;*/
+    min-height: 100%;
+  overflow:auto;
+}
+
+.dropdown-toggle , .dropdown-menu{
+
+    margin-left: 40px;
+    margin-right: 40px;
+    padding: 6px 20px;
+    vertical-align: middle;
+    /*background: #f8f8f8;*/
+    /*border: 3px solid #ddd;*/
+   
+    width: 250px;
+}
+
+
+.workforce{
+    width: 8%;
+}
+
+.end1{
+    width: 10%;
+}
+
+.up
+{
+float:top;
+margin-top:-80px;
+margin-left:20px;
+}
+.up1
+{
+float:top;
+margin-top:-80px;
+margin-left:80px;
+}
+    </style>
+
+    <script type="text/javascript">
+      $(window).ready(function() {
+    $('#preloader').fadeOut(1000);
+});
+
+       $(function(){
+
+    $(".dropdown-menu1 li a").click(function(){
+
+      $(".dropdown1 > .btn:first-child").text($(this).text() );
+      $(".btn:first-child").val();
+      $('.role').val($(this).text() );
+
+   });
+
+        $(".dropdown-menu2 li a").click(function(){
+
+      $(".dropdown2 > .btn:first-child").text($(this).text() );
+      $(".btn:first-child").val($(this).text() );
+      $('.language').val($(this).text() );
+
+
+   });
+
+            $(".dropdown-menu3 li a").click(function(){
+
+      $(".dropdown3 > .btn:first-child").text($(this).text() );
+      $(".btn:first-child").val($(this).text() );
+      $('.gender').val($(this).text() );
+
+
+   });
+
+                $(".dropdown-menu4 li a").click(function(){
+
+      $(".dropdown4 > .btn:first-child").text($(this).text() );
+      $(".btn:first-child").val($(this).text() );
+      $('.stream').val($(this).text() );
+
+
+   });
+    
+
+});
+    </script>
+<!-- <img src="{% static 'img/logotop.png' %}" class="logotop"> -->
+</head>
+<body>
+
+<!-- <div class="text">
+    <h1>Background image cycler</h1>
+    <p>A simple, responsive, fullscreen background slideshow.</p>
+</div> -->
+<div id="preloader">
+    <!-- <img src="{% static 'logo.png' %}"> -->
+  <div class="spinner-wrapper">
+            <div class="bubblingG">
+                <span id="bubblingG_1"></span>
+                <span id="bubblingG_2"></span>
+                <span id="bubblingG_3"></span>
+            </div>
+   </div>
+</div>
+<div id="background_cycler" >
+    <script type="text/javascript">
+        $('#background_cycler').hide(); //hide the background while the images load, ready to fade in later
+    </script>
+<!-- top left no-repeat; background-size:cover;
+top left no-repeat; background-size:cover;
+top left no-repeat; background-size:cover;
+top left no-repeat; background-size:cover;
+top left no-repeat; background-size:cover;
+top left no-repeat; background-size:cover;
+top left no-repeat; background-size:cover;
+top left no-repeat; background-size:cover; -->
+    <!-- <div class="img " style="background:url('static/img/img1.png') "></div> -->
+    <!-- <div class="img " style="background:url('static/img/img2.png') "></div> -->
+    <div class="img " style="background:url('/static/img/new/03.jpg') top left no-repeat; background-size:cover;"></div>
+    <div class="img " style="background:url('/static/img/new/04.jpg') top left no-repeat; background-size:cover;"></div>
+    <div class="img " style="background:url('/static/img/new/05.jpg') top left no-repeat; background-size:cover;"></div>
+    <div class="img " style="background:url('/static/img/new/06.jpg') top left no-repeat; background-size:cover;"></div>
+    <div class="img " style="background:url('/static/img/new/07.jpg') top left no-repeat; background-size:cover;"></div>
+    <div class="img " style="background:url('/static/img/new/08.jpg') top left no-repeat; background-size:cover;"></div>
+    <div class="img " style="background:url('/static/img/new/09.jpg') top left no-repeat; background-size:cover;"></div>
+    <div class="img active" style="background:url('/static/img/new/10.jpg') top left no-repeat; background-size:cover;"></div>
+    <!-- <div class="img" style="background:url('https://unsplash.it/1920/1200?image=1072') top left no-repeat; background-size:cover;"></div>
+    <div class="img" style="background:url('https://unsplash.it/1920/1200?image=1071') top left no-repeat; background-size:cover;"></div>
+    <div class="img" style="background:url('https://unsplash.it/1920/1200?image=1070') top left no-repeat; background-size:cover;"></div>
+ --></div>
+<!-- <div class="card card-1">
+    <article class="content">
+    <font color="#930a0a">KAAR TECHNOLOGIES – YOUR SPRINGBOARD FOR A SUCCESSFUL CAREER</font>
+    </article>
+</div> -->
+
+<div class="row">
+                        <div class="col-sm-6 col-sm-offset-3 form-box">
+                            
+                                 {% if flag == 1 %}
+                                 <center><font color="red">Not Registered</font></center>
+                                 {% endif %}
+                               
+                            <form role="form" action="kaarsignin" method="post" class="registration-form">
+
+                              
+
+<fieldset>
+                                    <div class="form-top">
+                                        <div class="form-top-left">
+                                        <!-- <i class="fa fa-chevron-left custom btn-previous" ></i>  -->
+
+                                            <h3>Sign In</h3>
+                                            <!-- <p>Personal inforation form</p> -->
+                                        </div>
+                                        <div class="form-top-right">
+                                            <img src="{% static 'logo.jpg' %}">
+                                        </div>
+                                    </div>
+                                    <div class="form-bottom">
+                                        <br>
+                                        <div class="form-group">
+                                            <center>Register Number</center>
+                                            <label class="sr-only" for="form-last-name">Student ID No. (As per University Records):</label>
+                                            <input type="text" name="regno" placeholder="Student ID No. (As per University Records):" class="form-last-name form-control" id="form-last-name" required>
+                                        </div>
+
+                                         <div class="form-group">
+                                            <center>Email ID</center>
+
+                                            <label class="sr-only" for="form-last-name">Email ID</label>
+                                            <input type="text" name="email" placeholder="Email ID" class="form-last-name form-control" id="form-last-name" required>
+                                        </div>
+
+                                         
+                                        <br><br><br>
+                                        <!-- <div class="form-group">
+                                            <label class="sr-only" for="form-about-yourself">About yourself</label>
+                                            <textarea name="form-about-yourself" placeholder="About yourself.." 
+                                                        class="form-about-yourself form-control" id="form-about-yourself"></textarea>
+                                        </div> -->
+                                        
+                                        <a href="kaarindex" class="kaarindex"><button type="button" class="btn custom custom2 up">Home</button></a>
+										<button type="submit" class="btn custom custom2 up1">Sign In</button>
+                                        <!-- <i class="fa fa-chevron-right custom btn-next pull-right" ></i>  -->
+                                    </div>
+                                </fieldset>
+                                
+                               
+                                
+                                
+                         
+                                {% csrf_token %}
+                                
+                            
+                            </form>
+                            
+<br><br>                        
+
+
+<br>
+</div>
+</div>
+
+    
+<script src="{% static 'js/slideshow.js' %}" type="text/javascript"></script>
+<script
+  src="{% static 'https://code.jquery.com/jquery-3.2.1.js' %}"
+  integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE="
+  crossorigin="anonymous"></script>
+
+ <script src="{% static 'assets/js/jquery-1.11.1.min.js' %}"></script>
+        <script src="{% static 'assets/bootstrap/js/bootstrap.min.js' %}"></script>
+        <script src="{% static 'assets/js/jquery.backstretch.min.js' %}"></script>
+        <script src="{% static 'assets/js/retina-1.1.0.min.js' %}"></script>
+        <script src="{% static 'assets/js/scripts.js' %}"></script>
+</body>
+<footer>
+    <div class="foot">
+ 
+    <img src="{% static 'img/foot1.png' %}" class="end end1">
+ 
+ 
+    <img src="{% static 'img/foot2.png' %}" class="end workforce">
+ 
+ 
+    <img src="{% static 'img/foot3.png' %}" class="end">
+ 
+ 
+    <img src="{% static 'img/foot4.PNG' %}" class="end end2">
+ 
+</div>
+</footer>
+</html>

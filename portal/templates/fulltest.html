@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+<script language="JavaScript">
+function newWindow(fileName,windowName) { msgWindow=window.open(fileName,windowName); }
+function replaceURL(fileName) { newWindow(fileName,'window2'); self.close(); }
+</script>
+
+<a href="javascript:window.open('bigpage.html','fs','fullscreen=yes')">change location</a>
+</body>
+</html>

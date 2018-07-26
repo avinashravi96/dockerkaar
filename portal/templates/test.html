@@ -1,0 +1,1028 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+	<title>KAAR</title>
+
+{% load staticfiles %}
+	<!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" icrossorigin="anonymous"> -->
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}" />
+
+<script src="{% static 'js/jquery-3.0.0.min.js' %}" ></script>
+
+    <style>
+    .numbers{
+    	margin-left: 70%;
+    	/*margin-right: 10%;*/
+    }
+    /*@import url('https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css');*/
+
+/* The heart of the matter */
+.btn-matrix > .btn:nth-child(5n+6) {
+  clear: left;
+  margin-left: 0;
+
+}
+.btn-matrix > .btn:nth-child(n+6) {
+  margin-top: -1px;
+}
+.btn-matrix > .btn:first-child {
+  border-bottom-left-radius: 0;
+}
+.btn-matrix > .btn:nth-child(5) {
+  border-top-right-radius: 4px !important;
+}
+.btn-matrix > .btn:nth-last-child(5) {
+  border-bottom-left-radius: 4px !important;
+}
+.btn-matrix > .btn:last-child {
+  border-top-right-radius: 0;
+}
+
+/* Decorations */
+.btn-matrix {
+  margin: 20px;
+  /*margin-top: 27%;*/
+}
+
+body{
+    /*background-color: #f2f2f2;*/
+}
+
+.questionpanel{
+	margin-top: 2%;
+	/*margin-left: 5%;*/
+	text-align: justify;
+	background: #fff;
+  border-radius: 2px;
+  display: inline-block;
+  /*height: 50vh;*/
+  border: 1px solid silver ;
+  
+
+  width: 60%;
+ /* -webkit-box-shadow: inset 0px 0px 12px -1px rgba(0,0,0,0.55);
+-moz-box-shadow: inset 0px 0px 12px -1px rgba(0,0,0,0.55);
+box-shadow: inset 0px 0px 12px -1px rgba(0,0,0,0.55);*/
+	/*background-color: white;*/
+}
+.rightnav{
+	margin-top: 6%;
+
+}
+
+
+.pagination-centered{
+	/*margin-left: 21%;*/
+	margin-top: 3%;
+}
+
+/*.mark{
+	margin-left: 47%;
+
+}*/
+.container{
+	margin-top: 5%;
+}
+
+.verticalLine {
+  border-left:  solid grey;
+}
+
+hr.style1{
+	border-top: 1px solid #8c8b8b;
+}
+hr.style2{
+	border-top: 1px solid #8c8b8b;
+	width: 100%;
+}
+
+img{
+	width: 10%;
+	margin-top: -8vh;
+}
+
+.container2{
+	margin-top: -4vh;
+}
+
+@font-face{
+    font-family: "Myriad-Pro";  
+    src: url(/static/fonts/MyriadWebPro.ttf) ;
+}
+body{ font-family:Myriad-Pro; }
+
+.legend { list-style: none; }
+.legend li { float: left; margin-right: 10px; }
+.legend span { border: 1px solid #ccc; float: left; width: 12px; height: 12px; margin: 2px; }
+/* your colors */
+.legend .Attended { background-color: #00C851; }
+.legend .Marked { background-color: #ff4444 }
+.legend .Skipped { background-color: #ffbb33 }
+/*.legend .notawesome { background-color: #000000; }*/
+
+.question{
+	font-size: 1.3vw;
+}
+.btn-info{
+  background: #930a0a;
+  border:none;
+}
+.btn-info:hover{
+background: #930a05;
+  border:none;
+}
+#time{
+	color: #930a0a;
+	font-weight: bold;
+	font-size: 2vw;
+}
+
+.quest{
+  display: none;
+}
+.finish{
+  margin-left: -8vw;
+}
+.time{
+  margin-top: -5.5vh;
+}
+
+li.active > a{
+  background-color: #a0a0a0 !important;
+  border-radius: 0;
+  /*display: none;*/
+}
+.qimg{
+  margin-top: 9vh;
+}
+
+/*@media only screen and (max-width: 1000px )
+{
+  .questionpanel{
+    width: 50%;
+  }
+}*/
+
+@media only screen and (max-width: 1000px) 
+{
+  .questionpanel{
+    width: 40%;
+    /*margin-left: -12vw;*/
+  }
+}
+    </style>
+
+
+
+
+<script type="text/javascript">
+  // window.onbeforeunload = function() { return "Your work will be lost."; };
+  function isOneChecked() {
+  // All <input> tags...
+  
+  var chx = document.getElementsByClassName('options');
+  for (var i=0; i<chx.length; i++) {
+    // If you have more than one radio group, also check the name attribute
+    // for the one you want as in && chx[i].name == 'choose'
+    // Return true from the function on first match of a checked item
+    if (chx[i].type == 'radio' && chx[i].checked) {
+      return true;
+    } 
+  }
+  // End of the loop, return false
+  return false;
+}
+
+	function startTimer(duration, display, mark, skip, submit, ques, quants, verbal, logical) {
+    var timer = duration, minutes, seconds;
+    setInterval(function () {
+        minutes = parseInt(timer / 60, 10)
+        seconds = parseInt(timer % 60, 10);
+
+        minutes = minutes < 10 ? "0" + minutes : minutes;
+        seconds = seconds < 10 ? "0" + seconds : seconds;
+        // window.setTimeout(function() { alert(duration); }, duration-duration+1000);
+        display.textContent = minutes + ":" + seconds;
+        mark.value = minutes + ":" + seconds;
+        skip.value = minutes + ":" + seconds;
+        submit.value = minutes + ":" + seconds;
+        ques.value = minutes + ":" + seconds;
+        quants.value = minutes + ":" + seconds;
+        verbal.value = minutes + ":" + seconds;
+        logical.value = minutes + ":" + seconds;
+        
+        if(minutes == 0 && seconds==0){
+          // alert("timeup");
+          // $('.sub').submit();
+          location.href="endtest";
+        }
+
+        if (--timer < 0) {
+            timer = 0;
+        }
+    }, 1000);
+}
+
+window.onload = function () {
+
+    var fiveMinutes = {{seconds}},
+        display = document.querySelector('#time');
+        mark = document.querySelector('#time2');
+        skip = document.querySelector('#time3');
+        submit = document.querySelector('#time4');
+        ques = document.querySelector('#time5');
+        quants = document.querySelector('#time6');
+        verbal = document.querySelector('#time7');
+        logical = document.querySelector('#time8');
+    startTimer(fiveMinutes, display, mark, skip, submit, ques, quants, verbal, logical);
+};
+
+$(document).ready(function(){
+document.addEventListener('contextmenu', event => event.preventDefault());
+$('.quants').click(function(){
+  $('.quantsform').submit();
+});
+$('.verbal').click(function(){
+  $('.verbalform').submit();
+});
+$('.logical').click(function(){
+  $('.logicalform').submit();
+});
+
+$('.submit').click(function(){
+  var qno = $(this).text();
+
+  qno = qno.replace("Q ","");
+if(isOneChecked()){
+
+  $('.sub').submit();
+}
+else{
+  alert("Choose at least one answer");
+}
+
+
+});
+
+ $('.quesb').click(function(){
+  var qno = $(this).text();
+
+  qno = qno.replace("Q ","");
+  // alert(qno);
+  $('.qno').val(qno);
+  $('.questionno').val(qno);
+  // $('.markedq').val(qno);
+  $('.qnoform').submit();
+
+ 	// alert("sd");
+  //  $('.options').html('<br> <div class="radio"> <label><input type="radio" name="optradio">Option 1</label></div><div class="radio">  <label><input type="radio" name="optradio">Option 2</label></div><div class="radio">  <label><input type="radio" name="optradio" >Option 3</label></div><div class="radio">  <label><input type="radio" name="optradio" >Option 3</label></div>');
+  // $('.btn-primary').addClass('btn-default');
+ 	// $('.btn-primary').removeClass('btn-primary');
+ 	// $(this).addClass('btn-primary');
+ 	// $(this).removeClass('btn-default');
+  // $(this).removeClass('btn-warning');
+  // $(this).removeClass('btn-danger');
+  // $('input[type="radio"]').attr('checked', false);
+// 
+
+    
+      $(".q").text($(this).text() );
+      // $(".btn:first-child").val($(this).text() );
+
+   
+ })
+
+
+ $('.mark').click(function(){
+
+
+  $('.marked').submit();
+  // alert("sd");
+  // $('.btn-primary').addClass('btn-danger');
+  // $('.btn-primary').removeClass('btn-primary');
+  
+
+   
+ })
+
+
+ $('.warn').click(function(){
+  $('.skipped').submit();
+  // alert("sd");
+  // $('.btn-primary').addClass('btn-warning');
+  // $('.btn-primary').removeClass('btn-primary');
+  
+
+   
+ })
+
+
+ // $('.submit').click(function(){
+ //  var curr = $('.q').text();
+ //  $(".btn:contains("+curr+")").addClass('btn-success');
+ //  // alert("sd");
+ //  // $('.btn-primary').addClass('btn-success');
+ //  $('.btn-primary').addClass(' ');
+ //  // $('.btn-primary').closest('.btn').addClass('btn-primary');
+ //  // $('.btn-primary').next('.btn').removeClass('btn-default');
+ //  $('.btn-primary').removeClass('btn-primary');
+ //  $('.btn-primary').removeClass('btn-warning');
+ //  $('.btn-primary').removeClass('btn-danger');
+  
+
+   
+ // })
+
+});
+
+$( document ).ready(function() {
+    console.log( "ready!" );
+});
+function endtest(){
+  var r = confirm("Are you sure?");
+if (r == true) {
+    // txt = "You pressed OK!";
+    location.href="endtest";
+} else {
+    // txt = "You pressed Cancel!";
+}
+  
+}
+</script>
+
+<script type="text/javascript">
+  (function() {
+    var
+        fullScreenApi = {
+            supportsFullScreen: false,
+            nonNativeSupportsFullScreen: false,
+            isFullScreen: function() { return false; },
+            requestFullScreen: function() {},
+            cancelFullScreen: function() {},
+            fullScreenEventName: '',
+            prefix: ''
+        },
+        browserPrefixes = 'webkit moz o ms khtml'.split(' ');
+ 
+    // check for native support
+    if (typeof document.cancelFullScreen != 'undefined') {
+        fullScreenApi.supportsFullScreen = true;
+    } else {
+        // check for fullscreen support by vendor prefix
+        for (var i = 0, il = browserPrefixes.length; i < il; i++ ) {
+            fullScreenApi.prefix = browserPrefixes[i];
+ 
+            if (typeof document[fullScreenApi.prefix + 'CancelFullScreen' ] != 'undefined' ) {
+                fullScreenApi.supportsFullScreen = true;
+ 
+                break;
+            }
+        }
+    }
+ 
+    // update methods to do something useful
+    if (fullScreenApi.supportsFullScreen) {
+        fullScreenApi.fullScreenEventName = fullScreenApi.prefix + 'fullscreenchange';
+ 
+        fullScreenApi.isFullScreen = function() {
+            switch (this.prefix) {
+                case '':
+                    return document.fullScreen;
+                case 'webkit':
+                    return document.webkitIsFullScreen;
+                default:
+                    return document[this.prefix + 'FullScreen'];
+            }
+        }
+        fullScreenApi.requestFullScreen = function(el) {
+            return (this.prefix === '') ? el.requestFullScreen() : el[this.prefix + 'RequestFullScreen']();
+        }
+        fullScreenApi.cancelFullScreen = function(el) {
+            return (this.prefix === '') ? document.cancelFullScreen() : document[this.prefix + 'CancelFullScreen']();
+        }
+    }
+    else if (typeof window.ActiveXObject !== "undefined") { // IE.
+        fullScreenApi.nonNativeSupportsFullScreen = true;
+        fullScreenApi.requestFullScreen = fullScreenApi.requestFullScreen = function (el) {
+                var wscript = new ActiveXObject("WScript.Shell");
+                if (wscript !== null) {
+                    wscript.SendKeys("{F11}");
+                }
+        }
+        fullScreenApi.isFullScreen = function() {
+                return document.body.clientHeight == screen.height && document.body.clientWidth == screen.width;
+        }
+    }
+ 
+    // jQuery plugin
+    if (typeof jQuery != 'undefined') {
+        jQuery.fn.requestFullScreen = function() {
+ 
+            return this.each(function() {
+                if (fullScreenApi.supportsFullScreen) {
+                    fullScreenApi.requestFullScreen(this);
+                }
+            });
+        };
+    }
+
+
+    // export api onclick="fullScreenApi.requestFullScreen(document.documentElement)"
+    window.fullScreenApi = fullScreenApi;
+})();
+
+   $(function(){
+    /*
+     * this swallows backspace keys on any non-input element.
+     * stops backspace -> back
+     */
+    // var rx = /INPUT|SELECT|TEXTAREA/i;
+
+    $(document).bind("keydown keypress", function(e){
+        if( e.which == 8 ){ // 8 == backspace
+                e.preventDefault();
+            // if(!rx.test(e.target.tagName) || e.target.disabled || e.target.readOnly ){
+            // }
+        }
+    });
+});
+</script>
+</head>
+<body   >
+	<div class="container">
+		<img src="{% static 'logo.jpg' %}" >
+	<div class="pull-right">
+  <p> <b> Welcome, {{user}}</b></p>
+	<a onclick="endtest()" class="finish"><button class="btn btn-info">Finish</button></a> <div class="time">Time Remaining : <span id="time">{{time}}</span> </div>
+    </div>
+</div>
+<hr class="style1">
+  {% if section == 1 %}
+     <center><h4><b>Quantitative Ability</b></h4></center>
+  {% endif %}
+
+  {% if section == 3 %}
+     <center><h4><b>Verbal Reasoning</b></h4></center>
+  {% endif %}
+
+  {% if section == 2 %}
+     <center><h4><b>Logical Reasoning</b></h4></center>
+  {% endif %}
+     
+<div class="container container2">
+<article class="container col-md-6 col-xs-6 questionpanel">
+	
+	<br>
+
+<div class="currquest">
+  <p class="q">{{qnum}}</p>
+  <form action="test" method="POST" class="marked">
+  {% csrf_token %}
+  <input type="hidden" name="cursection" value="{{section}}">
+  <input type="hidden" name="time" value="{{time}}" id="time2">
+
+  <input type="hidden" name="markedq" value="{{currq}}">
+    
+  </form>
+
+    <form action="test" method="POST" class="skipped">
+  {% csrf_token %}
+  <input type="hidden" name="cursection" value="{{section}}">
+
+  <input type="hidden" name="time" value="{{time}}" id="time3">
+
+  <input type="hidden" name="skipped" value="{{currq}}">
+    
+  </form>
+	<p class="question">{{question.text | safe}}</p>
+<form action="test" method="POST" class="sub">
+  {% csrf_token %}
+  <input type="hidden" name="cursection" value="{{section}}">
+
+  <input type="hidden" name="time" value="{{time}}" id="time4">
+
+  <input type="hidden" name="questionno" value="{{currq}}">
+	<div class="options">
+		<br>
+  {% if answer == question.option1 %}
+
+      <div class="radio">
+  <label><input type="radio" name="optradio" value="{{question.option1 | safe}}" class="options" checked="checked">{{question.option1}}</label>
+</div>
+  {% else %}
+
+<div class="radio">
+  <label><input type="radio" name="optradio" value="{{question.option1 | safe}}" class="options">{{question.option1}}</label>
+</div>
+  {% endif %}
+
+    {% if answer == question.option2 %}
+
+<div class="radio">
+  <label><input type="radio" name="optradio" value="{{question.option2 | safe}}" class="options" checked="checked">{{question.option2}}</label>
+</div>
+
+  
+  {% else %}
+
+<div class="radio">
+  <label><input type="radio" name="optradio" value="{{question.option2 | safe}}" class="options">{{question.option2}}</label>
+</div>
+  
+  {% endif %}
+
+  
+  {% if answer == question.option3 %}
+
+<div class="radio">
+  <label><input type="radio" name="optradio" value="{{question.option3 | safe}}" class="options" checked="checked">{{question.option3}}</label>
+</div>
+  {% else %}
+<div class="radio">
+  <label><input type="radio" name="optradio" value="{{question.option3 | safe}}" class="options">{{question.option3}}</label>
+</div>
+  {% endif %}
+
+
+
+  {% if answer == question.option4 %}
+<div class="radio">
+  <label><input type="radio" name="optradio" value="{{question.option4 | safe}}" class="options" checked="checked">{{question.option4}}</label>
+</div>
+  {% else %}
+
+
+<div class="radio">
+  <label><input type="radio" name="optradio" value="{{question.option4 | safe}}" class="options">{{question.option4}}</label>
+</div>
+  {% endif %}
+
+</div>
+</form>
+
+<div class="quest">
+  <p class="question">one ships are sailing in the sea on the two sides of a lighthouse. The angle of elevation of the top of the lighthouse is observed from the ships are 30° and 45° respectively. If the lighthouse is 100 m high, the distance between the two ships is:</p>
+
+  <div class="options">
+    <br>
+
+      <div class="radio">
+  <label><input type="radio" name="optradio">Option 1</label>
+</div>
+<div class="radio">
+  <label><input type="radio" name="optradio">Option 2</label>
+</div>
+<div class="radio">
+  <label><input type="radio" name="optradio" >Option 3</label>
+</div>
+<div class="radio">
+  <label><input type="radio" name="optradio" >Option 3</label>
+</div>
+
+</div>
+
+    </div>
+
+</article>    
+  
+  <form action="test" method="POST" class="quantsform">
+    {% csrf_token %}
+  <input type="hidden" name="secq" value="{{currq}}">
+  <input type="hidden" name="time" value="{{time}}" id="time6">
+
+    <input type="hidden" name="section" value="1">
+  </form>
+
+  <form action="test" method="POST" class="verbalform">
+    {% csrf_token %}
+  <input type="hidden" name="secq" value="{{currq}}">
+  <input type="hidden" name="time" value="{{time}}" id="time7">
+
+    <input type="hidden" name="section" value="3">
+  </form>
+
+  <form action="test" method="POST" class="logicalform">
+    {% csrf_token %}
+  <input type="hidden" name="secq" value="{{currq}}">
+  <input type="hidden" name="time" value="{{time}}" id="time8">
+
+    <input type="hidden" name="section" value="2">
+  </form>    
+
+<article class=" pull-right rightnav">
+<div class="verticalLine">
+<ul class="nav nav-pills ">
+  {% if section == 1 %}
+    <li class="active"><a href="#" class="quants">Quantitave Ability</a></li>
+  {% else %}
+    <li><a href="#" class="quants">Quantitave Ability</a></li>
+  {% endif %}
+  
+  {% if section == 3 %}
+    <li class="active"><a href="#" class="verbal active">Verbal Reasoning</a></li>
+  {% else %}
+    <li><a href="#" class="verbal">Verbal Reasoning</a></li>
+  {% endif %}
+  
+  {% if section == 2 %}
+    <li class="active"><a href="#" class="logical active">Logical Reasoning</a></li>
+  {% else %}
+    <li><a href="#" class="logical">Logical Reasoning</a></li>
+  {% endif %}
+
+  <!-- <li><a href="#">Section 4</a></li> -->
+
+  <!-- <li><a href="http://localhost:8083/student/ide">Programming</a></li> -->
+</ul>
+
+  <form action="test" method="POST" class="qnoform">
+    {% csrf_token %}
+  <input type="hidden" name="cursection" value="{{section}}">
+
+  <input type="hidden" name="time" value="{{time}}" id="time5">
+
+    <input type="hidden" name="qno" value="" class="qno">
+    </form>
+<div class="btn-group btn-matrix">
+  {% if '1' in sub %}
+  <button type="button" class="btn btn-success quesb" name="qno"  >Q 01</button>
+  {% elif '1' in mark %}
+  <button type="button" class="btn btn-danger quesb" name="qno">Q 01</button>
+  {% elif "1" in skip %}
+  <button type="button" class="btn btn-warning quesb" name="qno">Q 01</button>
+  {% elif "01" in qnum %}
+  <button type="button" class="btn btn-primary quesb" name="qno">Q 01</button>
+  {% else %}
+  <button type="button" class="btn btn-default quesb" name="qno">Q 01</button>
+  {% endif %}
+  
+  {% if "2" in sub %}
+  <button type="button" class="btn btn-success quesb" name="qno"  >Q 02</button>
+  {% elif "2" in mark %}
+  <button type="button" class="btn btn-danger quesb" name="qno">Q 02</button>
+  {% elif "2" in skip %}
+  <button type="button" class="btn btn-warning quesb" name="qno">Q 02</button>
+  {% elif "02" in qnum %}
+  <button type="button" class="btn btn-primary quesb" name="qno">Q 02</button>
+  {% else %}
+  <button type="button" class="btn btn-default quesb" name="qno">Q 02</button>
+  {% endif %}
+  
+  {% if "3" in sub %}
+  <button type="button" class="btn btn-success quesb" name="qno"  >Q 03</button>
+  {% elif "3" in mark %}
+  <button type="button" class="btn btn-danger quesb" name="qno">Q 03</button>
+  {% elif "3" in skip %}
+  <button type="button" class="btn btn-warning quesb" name="qno">Q 03</button>
+  {% elif "03" in qnum %}
+  <button type="button" class="btn btn-primary quesb" name="qno">Q 03</button>
+  {% else %}
+  <button type="button" class="btn btn-default quesb" name="qno">Q 03</button>
+  {% endif %}
+  
+  {% if "4" in sub %}
+  <button type="button" class="btn btn-success quesb" name="qno"  >Q 04</button>
+
+  {% elif "4" in mark %}
+  <button type="button" class="btn btn-danger quesb" name="qno">Q 04</button>
+  {% elif "4" in skip %}
+  <button type="button" class="btn btn-warning quesb" name="qno">Q 04</button>
+  {% elif "04" in qnum %}
+  <button type="button" class="btn btn-primary quesb" name="qno">Q 04</button>
+  {% else %}
+  <button type="button" class="btn btn-default quesb" name="qno">Q 04</button>
+  {% endif %}
+  
+  {% if "5" in sub %}
+  <button type="button" class="btn btn-success quesb" name="qno"  >Q 05</button>
+  {% elif "5" in mark %}
+  <button type="button" class="btn btn-danger quesb" name="qno">Q 05</button>
+  {% elif "5" in skip %}
+  <button type="button" class="btn btn-warning quesb" name="qno">Q 05</button>
+  {% elif "05" in qnum %}
+  <button type="button" class="btn btn-primary quesb" name="qno">Q 05</button>
+  {% else %}
+  <button type="button" class="btn btn-default quesb" name="qno">Q 05</button>
+  {% endif %}
+  
+
+   {% if "6" in sub %}
+  <button type="button" class="btn btn-success quesb" name="qno"  >Q 06</button>
+  {% elif "6" in mark %}
+  <button type="button" class="btn btn-danger quesb" name="qno">Q 06</button>
+  {% elif "6" in skip %}
+  <button type="button" class="btn btn-warning quesb" name="qno">Q 06</button>
+  {% elif "06" in qnum %}
+  <button type="button" class="btn btn-primary quesb" name="qno">Q 06</button>
+  {% else %}
+  <button type="button" class="btn btn-default quesb" name="qno">Q 06</button>
+  {% endif %}
+  
+  {% if "7" in sub %}
+  <button type="button" class="btn btn-success quesb" name="qno"  >Q 07</button>
+  {% elif "7" in mark %}
+  <button type="button" class="btn btn-danger quesb" name="qno">Q 07</button>
+  {% elif "7" in skip %}
+  <button type="button" class="btn btn-warning quesb" name="qno">Q 07</button>
+  {% elif "07" in qnum %}
+  <button type="button" class="btn btn-primary quesb" name="qno">Q 07</button>
+  {% else %}
+  <button type="button" class="btn btn-default quesb" name="qno">Q 07</button>
+  {% endif %}
+  
+  {% if "8" in sub %}
+  <button type="button" class="btn btn-success quesb" name="qno"  >Q 08</button>
+  {% elif "8" in mark %}
+  <button type="button" class="btn btn-danger quesb" name="qno">Q 08</button>
+  {% elif "8" in skip %}
+  <button type="button" class="btn btn-warning quesb" name="qno">Q 08</button>
+  {% elif "08" in qnum %}
+  <button type="button" class="btn btn-primary quesb" name="qno">Q 08</button>
+  {% else %}
+  <button type="button" class="btn btn-default quesb" name="qno">Q 08</button>
+  {% endif %}
+  
+  {% if "9" in sub %}
+  <button type="button" class="btn btn-success quesb" name="qno"  >Q 09</button>
+  {% elif "9" in mark %}
+  <button type="button" class="btn btn-danger quesb" name="qno">Q 09</button>
+  {% elif "9" in skip %}
+  <button type="button" class="btn btn-warning quesb" name="qno">Q 09</button>
+  {% elif "09" in qnum %}
+  <button type="button" class="btn btn-primary quesb" name="qno">Q 09</button>
+  {% else %}
+  <button type="button" class="btn btn-default quesb" name="qno">Q 09</button>
+  {% endif %}
+  
+  {% if "10" in sub %}
+  <button type="button" class="btn btn-success quesb" name="qno"  >Q 10</button>
+  {% elif "10" in mark %}
+  <button type="button" class="btn btn-danger quesb" name="qno">Q 10</button>
+  {% elif "10" in skip %}
+  <button type="button" class="btn btn-warning quesb" name="qno">Q 10</button>
+  {% elif "10" in qnum %}
+  <button type="button" class="btn btn-primary quesb" name="qno">Q 10</button>
+  {% else %}
+  <button type="button" class="btn btn-default quesb" name="qno">Q 10</button>
+  {% endif %}
+  
+  {% if section != 3 %}
+  {% if "11" in sub %}
+  <button type="button" class="btn btn-success quesb" name="qno"  >Q 11</button>
+  {% elif "11" in mark %}
+  <button type="button" class="btn btn-danger quesb" name="qno">Q 11</button>
+  {% elif "11" in skip %}
+  <button type="button" class="btn btn-warning quesb" name="qno">Q 11</button>
+  {% elif "11" in qnum %}
+  <button type="button" class="btn btn-primary quesb" name="qno">Q 11</button>
+  {% else %}
+  <button type="button" class="btn btn-default quesb" name="qno">Q 11</button>
+  {% endif %}
+  
+  {% if "12" in sub %}
+  <button type="button" class="btn btn-success quesb" name="qno"  >Q 12</button>
+  {% elif "12" in mark %}
+  <button type="button" class="btn btn-danger quesb" name="qno">Q 12</button>
+  {% elif "12" in skip %}
+  <button type="button" class="btn btn-warning quesb" name="qno">Q 12</button>
+  {% elif "12" in qnum %}
+  <button type="button" class="btn btn-primary quesb" name="qno">Q 12</button>
+  {% else %}
+  <button type="button" class="btn btn-default quesb" name="qno">Q 12</button>
+  {% endif %}
+  
+  {% if "13" in sub %}
+  <button type="button" class="btn btn-success quesb" name="qno"  >Q 13</button>
+  {% elif "13" in mark %}
+  <button type="button" class="btn btn-danger quesb" name="qno">Q 13</button>
+  {% elif "13" in skip %}
+  <button type="button" class="btn btn-warning quesb" name="qno">Q 13</button>
+  {% elif "13" in qnum %}
+  <button type="button" class="btn btn-primary quesb" name="qno">Q 13</button>
+  {% else %}
+  <button type="button" class="btn btn-default quesb" name="qno">Q 13</button>
+  {% endif %}
+  
+  {% if "14" in sub %}
+  <button type="button" class="btn btn-success quesb" name="qno"  >Q 14</button>
+  {% elif "14" in mark %}
+  <button type="button" class="btn btn-danger quesb" name="qno">Q 14</button>
+  {% elif "14" in skip %}
+  <button type="button" class="btn btn-warning quesb" name="qno">Q 14</button>
+  {% elif "14" in qnum %}
+  <button type="button" class="btn btn-primary quesb" name="qno">Q 14</button>
+  {% else %}
+  <button type="button" class="btn btn-default quesb" name="qno">Q 14</button>
+  {% endif %}
+  
+  {% if "15" in sub %}
+  <button type="button" class="btn btn-success quesb" name="qno"  >Q 15</button>
+  {% elif "15" in mark %}
+  <button type="button" class="btn btn-danger quesb" name="qno">Q 15</button>
+  {% elif "15" in skip %}
+  <button type="button" class="btn btn-warning quesb" name="qno">Q 15</button>
+  {% elif "15" in qnum %}
+  <button type="button" class="btn btn-primary quesb" name="qno">Q 15</button>
+  {% else %}
+  <button type="button" class="btn btn-default quesb" name="qno">Q 15</button>
+  {% endif %}
+  
+  {% if "16" in sub %}
+  <button type="button" class="btn btn-success quesb" name="qno"  >Q 16</button>
+  {% elif "16" in mark %}
+  <button type="button" class="btn btn-danger quesb" name="qno">Q 16</button>
+  {% elif "16" in skip %}
+  <button type="button" class="btn btn-warning quesb" name="qno">Q 16</button>
+  {% elif "16" in qnum %}
+  <button type="button" class="btn btn-primary quesb" name="qno">Q 16</button>
+  {% else %}
+  <button type="button" class="btn btn-default quesb" name="qno">Q 16</button>
+  {% endif %}
+  
+  {% if "17" in sub %}
+  <button type="button" class="btn btn-success quesb" name="qno"  >Q 17</button>
+  {% elif "17" in mark %}
+  <button type="button" class="btn btn-danger quesb" name="qno">Q 17</button>
+  {% elif "17" in skip %}
+  <button type="button" class="btn btn-warning quesb" name="qno">Q 17</button>
+  {% elif "17" in qnum %}
+  <button type="button" class="btn btn-primary quesb" name="qno">Q 17</button>
+  {% else %}
+  <button type="button" class="btn btn-default quesb" name="qno">Q 17</button>
+  {% endif %}
+  
+  {% if "18" in sub %}
+  <button type="button" class="btn btn-success quesb" name="qno"  >Q 18</button>
+  {% elif "18" in mark %}
+  <button type="button" class="btn btn-danger quesb" name="qno">Q 18</button>
+  {% elif "18" in skip %}
+  <button type="button" class="btn btn-warning quesb" name="qno">Q 18</button>
+  {% elif "18" in qnum %}
+  <button type="button" class="btn btn-primary quesb" name="qno">Q 18</button>
+  {% else %}
+  <button type="button" class="btn btn-default quesb" name="qno">Q 18</button>
+  {% endif %}
+  
+  {% if "19" in sub %}
+  <button type="button" class="btn btn-success quesb" name="qno"  >Q 19</button>
+  {% elif "19" in mark %}
+  <button type="button" class="btn btn-danger quesb" name="qno">Q 19</button>
+  {% elif "19" in skip %}
+  <button type="button" class="btn btn-warning quesb" name="qno">Q 19</button>
+  {% elif "19" in qnum %}
+  <button type="button" class="btn btn-primary quesb" name="qno">Q 19</button>
+  {% else %}
+  <button type="button" class="btn btn-default quesb" name="qno">Q 19</button>
+  {% endif %}
+  
+  {% if "20" in sub %}
+  <button type="button" class="btn btn-success quesb" name="qno"  >Q 20</button>
+  {% elif "20" in mark %}
+  <button type="button" class="btn btn-danger quesb" name="qno">Q 20</button>
+  {% elif "20" in skip %}
+  <button type="button" class="btn btn-warning quesb" name="qno">Q 20</button>
+  {% elif "20" in qnum %}
+  <button type="button" class="btn btn-primary quesb" name="qno">Q 20</button>
+  {% else %}
+  <button type="button" class="btn btn-default quesb" name="qno">Q 20</button>
+  {% endif %}
+  {% endif %}
+  
+  <!-- {% if "21" in sub %}
+  <button type="button" class="btn btn-success quesb" name="qno"  >Q 21</button>
+  {% elif "21" in mark %}
+  <button type="button" class="btn btn-danger quesb" name="qno">Q 21</button>
+  {% elif "21" in skip %}
+  <button type="button" class="btn btn-warning quesb" name="qno">Q 21</button>
+  {% elif "21" in qnum %}
+  <button type="button" class="btn btn-primary quesb" name="qno">Q 21</button>
+  {% else %}
+  <button type="button" class="btn btn-default quesb" name="qno">Q 21</button>
+  {% endif %}
+  
+  {% if "22" in sub %}
+  <button type="button" class="btn btn-success quesb" name="qno"  >Q 22</button>
+  {% elif "22" in mark %}
+  <button type="button" class="btn btn-danger quesb" name="qno">Q 22</button>
+  {% elif "22" in skip %}
+  <button type="button" class="btn btn-warning quesb" name="qno">Q 22</button>
+  {% elif "22" in qnum %}
+  <button type="button" class="btn btn-primary quesb" name="qno">Q 22</button>
+  {% else %}
+  <button type="button" class="btn btn-default quesb" name="qno">Q 22</button>
+  {% endif %}
+  
+  {% if "23" in sub %}
+  <button type="button" class="btn btn-success quesb" name="qno"  >Q 23</button>
+  {% elif "23" in mark %}
+  <button type="button" class="btn btn-danger quesb" name="qno">Q 23</button>
+  {% elif "23" in skip %}
+  <button type="button" class="btn btn-warning quesb" name="qno">Q 23</button>
+  {% elif "23" in qnum %}
+  <button type="button" class="btn btn-primary quesb" name="qno">Q 23</button>
+  {% else %}
+  <button type="button" class="btn btn-default quesb" name="qno">Q 23</button>
+  {% endif %}
+  
+  {% if "24" in sub %}
+  <button type="button" class="btn btn-success quesb" name="qno"  >Q 24</button>
+  {% elif "24" in mark %}
+  <button type="button" class="btn btn-danger quesb" name="qno">Q 24</button>
+  {% elif "24" in skip %}
+  <button type="button" class="btn btn-warning quesb" name="qno">Q 24</button>
+  {% elif "24" in qnum %}
+  <button type="button" class="btn btn-primary quesb" name="qno">Q 24</button>
+  {% else %}
+  <button type="button" class="btn btn-default quesb" name="qno">Q 24</button>
+  {% endif %}
+  
+  {% if "25" in sub %}
+  <button type="button" class="btn btn-success quesb" name="qno"  >Q 25</button>
+  {% elif "25" in mark %}
+  <button type="button" class="btn btn-danger quesb" name="qno">Q 25</button>
+  {% elif "25" in skip %}
+  <button type="button" class="btn btn-warning quesb" name="qno">Q 25</button>
+  {% elif "25" in qnum %}
+  <button type="button" class="btn btn-primary quesb" name="qno">Q 25</button>
+  {% else %}
+  <button type="button" class="btn btn-default quesb" name="qno">Q 25</button>
+  {% endif %} -->
+
+ 
+ 
+  <!-- <button type="button" class="btn btn-default quesb" name="qno">Q 02</button> -->
+ <!--  <button type="button" class="btn btn-default quesb" name="qno">Q 03</button>
+  <button type="button" class="btn btn-default quesb" name="qno">Q 04</button>
+  <button type="button" class="btn btn-default quesb" name="qno">Q 05</button>
+  <button type="button" class="btn btn-default quesb" name="qno">Q 06</button>
+  <button type="button" class="btn btn-default quesb" name="qno">Q 07</button>
+  <button type="button" class="btn btn-default quesb" name="qno">Q 08</button>
+  <button type="button" class="btn btn-default quesb" name="qno">Q 09</button>
+  <button type="button" class="btn btn-default quesb" name="qno">Q 10</button>
+  <button type="button" class="btn btn-default quesb" name="qno">Q 11</button>
+  <button type="button" class="btn btn-default quesb" name="qno">Q 12</button>
+  <button type="button" class="btn btn-default quesb" name="qno">Q 13</button>
+  <button type="button" class="btn btn-default quesb" name="qno">Q 14</button>
+  <button type="button" class="btn btn-default quesb" name="qno">Q 15</button>
+  <button type="button" class="btn btn-default quesb" name="qno">Q 16</button>
+  <button type="button" class="btn btn-default quesb" name="qno">Q 17</button>
+  <button type="button" class="btn btn-default quesb" name="qno">Q 18</button>
+  <button type="button" class="btn btn-default quesb" name="qno">Q 19</button>
+  <button type="button" class="btn btn-default quesb" name="qno">Q 20</button>
+  <button type="button" class="btn btn-default quesb" name="qno">Q 21</button>
+  <button type="button" class="btn btn-default quesb" name="qno">Q 22</button>
+  <button type="button" class="btn btn-default quesb" name="qno">Q 23</button>
+  <button type="button" class="btn btn-default quesb" name="qno">Q 24</button>
+  <button type="button" class="btn btn-default quesb" name="qno">Q 25</button> -->
+</div>
+
+<br><br><br>
+</div>
+<ul class="legend text-center ">
+    <li><span class="Attended"></span> Attended</li>
+    <li><span class="Marked"></span> Marked</li>
+    <li><span class="Skipped"></span> Skipped</li>
+</ul>   
+
+
+</article>
+
+
+
+</div>
+
+<!-- <div class="progress">
+  <div class="progress-bar" role="progressbar" style="width: 15%" aria-valuenow="15" aria-valuemin="0" aria-valuemax="100"></div>
+  <div class="progress-bar bg-success" role="progressbar" style="width: 30%" aria-valuenow="30" aria-valuemin="0" aria-valuemax="100"></div>
+  <div class="progress-bar bg-info" role="progressbar" style="width: 20%" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100"></div>
+</div> -->
+<div class="col-md-12">
+	<!-- <hr class="style2"> -->
+</div>
+<div class="pagination-centered container">
+<!-- <nav aria-label="Page navigation example">
+  <ul class="pagination justify-content-center">
+    <li class="page-item  ">
+      <a class="page-link" href="#" tabindex="-1">Previous</a>
+    </li>
+    <li class="page-item"><a class="page-link" href="#">1</a></li>
+    <li class="page-item"><a class="page-link" href="#">2</a></li>
+    <li class="page-item"><a class="page-link" href="#">3</a></li>
+    <li class="page-item">
+      <a class="page-link" href="#">Next</a>
+    </li>
+  </ul>
+</nav> -->
+
+<button class="btn btn-success submit">Submit and Next</button> &nbsp; <button class="btn btn-danger mark">Mark for Later</button> &nbsp; <button class="btn btn-warning warn">Skip &amp; Next </button> 
+</div>
+</body>
+<script src="{% static 'js/jquery-3.1.1.min.js' %}" ></script>
+
+<!-- <script src="https://code.jquery.com/jquery-3.1.1.min.js" ></script> -->
+
+<script src="{% static 'js/tether.min.js' %}" ></script>
+<script src="{% static 'js/bootstrap.min.js' %}" ></script>
+</html>
+

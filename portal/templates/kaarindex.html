@@ -1,0 +1,1881 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Kaar</title>
+{% load staticfiles %}
+    <meta charset="UTF-8">
+
+    <link rel="stylesheet" href="{% static 'css/slideshow.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/datepicker.css' %}" />
+   <!-- <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:400,100,300,500"> -->
+        <link rel="stylesheet" href="{% static 'assets/bootstrap/css/bootstrap.min.css' %}">
+        <link rel="stylesheet" href="{% static 'assets/font-awesome/css/font-awesome.min.css' %}">
+        <link rel="stylesheet" href="{% static 'assets/css/form-elements.css' %}">
+        <link rel="stylesheet" href="{% static 'assets/css/style.css' %}">
+     <!--<script src="http://code.jquery.com/jquery-latest.min.js" type="text/javascript"></script>-->
+<script src="{% static 'js/jquery-latest.min.js' %}" ></script>
+<!-- <script src="{% static 'js/jquery-3.0.0.min.js' %}" ></script> -->
+
+    <!-- <script  src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.17.0/jquery.validate.js"></script> -->
+<!-- <script src="{% static 'js/bootstrap-datepicker.js' %}"></script> -->
+
+    <style type="text/css">
+    .dropdown-toggle{
+      font-size: 0.8vw;
+    }
+    .dropdown-menu{
+      /*white-space: normal;*/
+    }
+    li > a{
+      font-size: 0.8vw;
+
+    }
+    p{
+      font-size: 15px;
+
+    }
+    ::-webkit-scrollbar {
+    /*height: 12px;*/
+    width: 2px;
+    background: #000;
+}
+
+::-webkit-scrollbar-thumb {
+    background: silver;
+    -webkit-border-radius: 1ex;
+    -webkit-box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.75);
+}
+
+::-webkit-scrollbar-corner {
+    background: #000;
+}
+
+.red{
+color: #930a0a;
+}
+    .logotop{
+        left:0;
+        padding: 0;
+        margin-left: -64%;
+    }
+    .btn-link{
+        /*color: #930a0a;*/
+        /*color: black;*/
+        text-decoration: none;
+    }
+    .custom{
+        color: #930a0a;
+        cursor: pointer;
+    }
+    .tf{
+        width: 4%;
+    }
+
+    .collapse{
+        font-size: 12px;
+    }
+          .spinner-wrapper {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: white;
+    z-index: 99999;
+    height: 100%;
+    width: 100%;
+    overflow: hidden !important;
+    }
+
+    .bubblingG {
+        top: 50%;
+        left: 50%;
+        position: absolute;
+        margin-left: -40px;
+
+    }
+
+    .bubblingG {
+    text-align: center;
+    width:80px;
+    height:50px;
+    }
+
+    .bubblingG span {
+    display: inline-block;
+    vertical-align: middle;
+    width: 10px;
+    height: 10px;
+    margin: 25px auto;
+    -moz-border-radius: 50px;
+    -moz-animation: bubblingG 0.7s infinite alternate;
+    -webkit-border-radius: 50px;
+    -webkit-animation: bubblingG 0.7s infinite alternate;
+    -ms-border-radius: 50px;
+    -ms-animation: bubblingG 0.7s infinite alternate;
+    -o-border-radius: 50px;
+    -o-animation: bubblingG 0.7s infinite alternate;
+    border-radius: 50px;
+    animation: bubblingG 0.7s infinite alternate;
+    }
+
+    #bubblingG_1 {
+    -moz-animation-delay: 0s;
+    -webkit-animation-delay: 0s;
+    -ms-animation-delay: 0s;
+    -o-animation-delay: 0s;
+    animation-delay: 0s;
+    }
+
+    #bubblingG_2 {
+    -moz-animation-delay: 0.21s;
+    -webkit-animation-delay: 0.21s;
+    -ms-animation-delay: 0.21s;
+    -o-animation-delay: 0.21s;
+    animation-delay: 0.21s;
+    }
+
+    #bubblingG_3 {
+    -moz-animation-delay: 0.42s;
+    -webkit-animation-delay: 0.42s;
+    -ms-animation-delay: 0.42s;
+    -o-animation-delay: 0.42s;
+    animation-delay: 0.42s;
+    }
+
+    @-moz-keyframes bubblingG {
+    0% {
+    width: 10px;
+    height: 10px;
+    -moz-transform: translateY(0);
+    }
+
+    100% {
+    width: 24px;
+    height: 24px;
+    -moz-transform: translateY(-21px);
+    }
+
+    }
+
+    @-webkit-keyframes bubblingG {
+    0% {
+    width: 10px;
+    height: 10px;
+    -webkit-transform: translateY(0);
+    }
+
+    100% {
+    width: 24px;
+    height: 24px;
+    -webkit-transform: translateY(-21px);
+    }
+
+    }
+
+    @-ms-keyframes bubblingG {
+    0% {
+    width: 10px;
+    height: 10px;
+    -ms-transform: translateY(0);
+    }
+
+    100% {
+    width: 24px;
+    height: 24px;
+    -ms-transform: translateY(-21px);
+    }
+
+    }
+
+    @-o-keyframes bubblingG {
+    0% {
+    width: 10px;
+    height: 10px;
+    -o-transform: translateY(0);
+    }
+
+    100% {
+    width: 24px;
+    height: 24px;
+    -o-transform: translateY(-21px);
+    }
+
+    }
+
+    @keyframes bubblingG {
+    0% {
+    width: 10px;
+    height: 10px;
+    transform: translateY(0);
+    }
+
+    100% {
+    width: 24px;
+    height: 24px;
+    transform: translateY(-21px);
+    }
+
+    }
+
+  .bubblingG span {
+    background: #930a0a;
+    /*background: #F15234;*/
+  }
+
+
+.card {
+  background: #fff;
+  border-radius: 8px;
+  display: inline-block;
+  height: 500px;
+  margin: 1rem;
+  position: relative;
+  width: 400px;
+  margin-left: 60%;
+  margin-top: 12vh;
+}
+
+.card-1 {
+  box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+  transition: all 0.3s cubic-bezier(.25,.8,.25,1);
+}
+
+.card-1:hover {
+  box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+}
+.img{
+    /*background-image: linear-gradient(to bottom right,#002f4b,#dc4225);*/
+    padding-right: 80px;
+}
+
+.content{
+    margin:15px;
+}
+
+.btn-primary{
+    background:#930a0a;
+}
+
+
+
+/*.dropdown-toggle:focus,.dropdown-toggle:active,.dropdown-toggle:visited,.dropdown-toggle:hover{
+    background:#930a0a;
+
+}*/
+
+.dropdown-menu{
+    height: auto;
+    max-height: 200px;
+    overflow-x: hidden;
+}
+
+@font-face{
+    font-family: "Myriad-Pro";
+    src: url(/static/fonts/MyriadWebPro.ttf) ;
+}
+
+@font-face{
+    font-family: "FontAwesome";
+    src: url(/static/fonts/FontAwesome.otf) ;
+}
+body{ font-family:Myriad-Pro;
+
+    background: #f7f7f7;
+      /*background-color: #1b1f26;*/
+    /*background: #f7f7f7;*/
+}
+
+.end {
+    width: 14% ;
+    height: 30px;
+    /*height: 10vh;*/
+    padding-right: 20px;
+}
+.end2{
+    width: 6%;
+
+}
+.foot{
+    /*margin-left: 50%;*/
+}
+html{
+    /*background: #f2efef;*/
+    /*z-index: -2;*/
+    justify-content: all;
+    text-align: justify;
+    overflow-x: hidden;
+}
+footer{
+    position:fixed;
+   left:0px;
+   bottom:12px;
+   /*z-index: -1;*/
+}
+.open{
+    color: blue;
+}
+.dropdown-select{
+    background: #930a0a;
+    color: white;
+}
+/*
+.btn-primary:focus, .btn-primary:hover, .open>.dropdown-toggle.btn-primary {
+    color: #fff;
+    background-color: #930a0a;
+
+}
+
+
+.btn-primary:hover,.signup:hover { opacity: 0.6; color: #fff !important; }
+
+.btn-primary:active ,.signup:active { outline: 0; opacity: 0.6; color: #fff !important; -moz-box-shadow: none; -webkit-box-shadow: none; box-shadow: none; }
+
+.btn-primary:focus,.singup:focus { outline: 0; opacity: 0.6; background: #930a0a; color: #fff !important; }
+
+.btn-primary:active:focus, .btn-primary.active:focus ,.signup:active:focus, .signup.active:focus { outline: 0; opacity: 0.6; background: #930a0a; color: #fff !important; }
+*/
+
+fieldset{
+    overflow-y: scrol;
+
+}
+
+.home{
+    width: 25%;
+}
+
+p{
+    font-size: 14px;
+    line-height: 3vh;
+}
+
+.form-box{
+    /*max-height: 100px;*/
+    min-height: 100%;
+  overflow:auto;
+}
+
+.dropdown-toggle , .dropdown-menu{
+
+    margin-left: 40px;
+    margin-right: 40px;
+    padding: 6px 20px;
+    vertical-align: middle;
+    /*background: #f8f8f8;*/
+    /*border: 3px solid #ddd;*/
+
+    width: 250px;
+}
+
+
+.workforce{
+    width: 8%;
+}
+
+.end1{
+    width: 10%;
+}
+.jobfont{
+  line-height: 0.2px !important ;
+}
+
+       .custom{
+        color: #930a0a;
+        /*color:white;*/
+        cursor: pointer;
+    }
+    .custom2{
+        background-color: #930a0a;
+        color:white;
+        cursor: pointer;
+    }
+
+/*.form-control:after{
+
+    content: "\f000";
+    font-family: FontAwesome;
+    font-style: normal;
+    font-weight: normal;
+    text-decoration: inherit;
+
+    /*color: red;*/
+   /* font-size: 18px;
+    padding-right: 0.5em;
+    position: absolute;
+    top: 10px;
+    left: 0;*
+}
+/*.input-error::-webkit-input-placeholder, .input-error::-webkit-input-placeholder {
+  color: red;
+}
+.input-error:-moz-placeholder, .input-error:-moz-placeholder {
+  color: red;
+}*/
+input { font-family: 'FontAwesome' !important; }
+.kaarstudent
+{
+    text-decoration: underline;
+}
+.up2
+{
+float:top;
+margin-top:-5px;
+margin-left:20px;
+}
+.up
+{
+float:top;
+margin-top:-80px;
+margin-left:20px;
+}
+.up1
+{
+float:top;
+margin-top:-80px;
+margin-left:80px;
+}
+
+    </style>
+<!-- <script>
+// just for the demos, avoids form submit
+jQuery.validator.setDefaults({
+  debug: true,
+  success: "valid"
+});
+var form = $( ".registration-form" );
+form.validate();
+$( ".btn-next" ).click(function() {
+  alert( "Valid: " + form.valid() );
+});
+
+
+
+</script> -->
+
+    <script type="text/javascript">
+//       $(window).ready(function() {
+//     $('#preloader').fadeOut(1000);
+// });
+
+       $(function(){
+
+
+
+    $(".dropdown-menu1 li a").click(function(){
+
+      $(".dropdown1 > .btn:first-child").text($(this).text() );
+      $(".btn:first-child").val();
+      $(".dropdown-toggle1").addClass("dropdown-select");
+      $('.role').val($(this).text() );
+      // $('.role2').val($(this).text() );
+
+   });
+
+        $(".dropdown-menu5 li a").click(function(){
+
+      $(".dropdown5 > .btn:first-child").text($(this).text() );
+      $(".btn:first-child").val();
+      $(".dropdown-toggle5").addClass("dropdown-select");
+      // $('.role').val($(this).text() );
+      $('.role2').val($(this).text() );
+
+   });
+
+        $(".dropdown-menu2 li a").click(function(){
+
+      $(".dropdown2 > .btn:first-child").text($(this).text() );
+      $(".btn:first-child").val($(this).text() );
+      $(".dropdown-toggle2").addClass("dropdown-select");
+      $('.language').val($(this).text() );
+
+
+   });
+
+            $(".dropdown-menu3 li a").click(function(){
+
+      $(".dropdown3 > .btn:first-child").text($(this).text() );
+      $(".btn:first-child").val($(this).text() );
+    $(".dropdown-toggle3").addClass("dropdown-select");
+      $('.gender').val($(this).text() );
+
+
+   });
+
+                $(".dropdown-menu4 li a").click(function(){
+
+      $(".dropdown4 > .btn:first-child").text($(this).text() );
+      $(".btn:first-child").val($(this).text() );
+            $(".dropdown-toggle4").addClass("dropdown-select");
+      $('.stream').val($(this).text() );
+
+
+   });
+
+
+                $(".dropdown-menu6 li a").click(function(){
+
+      $(".dropdown6 > .btn:first-child").text($(this).text() );
+      $(".btn:first-child").val($(this).text() );
+            $(".dropdown-toggle6").addClass("dropdown-select");
+      $('.pgstream').val($(this).text() );
+
+
+   });
+                $(".dropdown-menu7 li a").click(function(){
+
+      $(".dropdown7 > .btn:first-child").text($(this).text() );
+      $(".btn:first-child").val($(this).text() );
+            $(".dropdown-toggle7").addClass("dropdown-select");
+      $('.zone').val($(this).text() );
+
+
+   });
+
+                $(".dropdown-menu8 li a").click(function(){
+
+      $(".dropdown8 > .btn:first-child").text($(this).text() );
+      $(".btn:first-child").val($(this).text() );
+            $(".dropdown-toggle8").addClass("dropdown-select");
+      $('.fam').val($(this).text() );
+
+
+   });
+                $(".dropdown-menu9 li a").click(function(){
+
+      $(".dropdown9 > .btn:first-child").text($(this).text() );
+      $(".btn:first-child").val($(this).text() );
+            $(".dropdown-toggle9").addClass("dropdown-select");
+      $('.earn').val($(this).text() );
+
+
+   });
+                $(".dropdown-menu10 li a").click(function(){
+
+      $(".dropdown10 > .btn:first-child").text($(this).text() );
+      $(".btn:first-child").val($(this).text() );
+            $(".dropdown-toggle10").addClass("dropdown-select");
+      $('.writtenenglish').val($(this).text() );
+
+
+   });
+
+                $(".dropdown-menu11 li a").click(function(){
+
+      $(".dropdown11 > .btn:first-child").text($(this).text() );
+      $(".btn:first-child").val($(this).text() );
+            $(".dropdown-toggle11").addClass("dropdown-select");
+      $('.spokenenglish').val($(this).text() );
+
+
+   });
+                $(".dropdown-menu12 li a").click(function(){
+
+      $(".dropdown12 > .btn:first-child").text($(this).text() );
+      $(".btn:first-child").val($(this).text() );
+            $(".dropdown-toggle12").addClass("dropdown-select");
+      $('.msoffice').val($(this).text() );
+
+
+   });
+                $(".dropdown-menu13 li a").click(function(){
+      $('.dropdown13').addClass("open");
+      $('.dropdown13 > .btn').attr("aria-expanded","true");
+      $(".dropdown13 > .btn:first-child").text($(this).text() );
+      $(".btn:first-child").val($(this).text() );
+            $(".dropdown-toggle13").addClass("dropdown-select");
+            var val = $('.extra').val();
+            val += "," + $(this).text() ;
+      $('.extra').val(val );
+
+
+   });
+    // $(document).ready(function(){
+    // $('input').blur(function()
+    // {
+    // if( !$(this).val() ) {
+    //    // alert("got");
+    // }
+    // });
+
+//     $('.datepicker').datepicker({
+//     format: 'mm/dd/yyyy',
+//     startDate: '-3d'
+// });
+//      $('.datepicker').datepicker();
+//     });
+
+});
+
+    </script>
+<script type="text/javascript">
+    $(document).ready(function(){
+
+
+    $('.registration-form .btn-next ').on('click', function() {
+
+        var parent_fieldset = $(this).parents('fieldset');
+        var next_step = true;
+
+
+        parent_fieldset.find('.email').each(function() {
+             var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+             if(re.test($(this).val())){
+                $(this).removeClass('input-error');
+             }
+             else{
+                $(this).addClass('input-error');
+
+                next_step = false;
+             }
+        });
+
+        parent_fieldset.find('.phone').each(function() {
+             var re = /^[0-9]{10}$/;
+             if(re.test($(this).val())){
+                $(this).removeClass('input-error');
+             }
+             else{
+                $(this).addClass('input-error');
+                next_step = false;
+             }
+        });
+
+        parent_fieldset.find('.altphone').each(function() {
+             var re = /^[0-9]{10,11}$/;
+             if(re.test($(this).val())){
+                $(this).removeClass('input-error');
+             }
+             else{
+                $(this).addClass('input-error');
+                next_step = false;
+             }
+        });
+
+        parent_fieldset.find('.name').each(function() {
+             var re = /^[a-zA-Z\. ]+$/;
+             if($(this).val() && re.test($(this).val())){
+                $(this).removeClass('input-error');
+             }
+             else{
+                $(this).addClass('input-error');
+                next_step = false;
+             }
+        });
+
+        parent_fieldset.find('.id').each(function() {
+             var re = /^([a-zA-Z0-9]+)$/;
+
+             if(re.test($(this).val())){
+                $(this).removeClass('input-error');
+             }
+             else{
+                $(this).addClass('input-error');
+                next_step = false;
+             }
+        });
+
+        parent_fieldset.find('.date').each(function() {
+             var re =  /^\d{4}[./-]\d{2}[./-]\d{2}$/;
+
+             if(re.test($(this).val())){
+                $(this).removeClass('input-error');
+             }
+             else{
+
+                $(this).addClass('input-error');
+                next_step = false;
+             }
+        });
+
+
+
+        parent_fieldset.find('.tenpercentage').each(function() {
+            var re = /^\d+(\.\d+)?$/;
+
+             if(re.test($(this).val())){
+                $(this).removeClass('input-error');
+             }
+             else{
+                $(this).addClass('input-error');
+                next_step = false;
+             }
+        });
+
+
+        parent_fieldset.find('.twpercentage').each(function() {
+            var re = /^\d+(\.\d+)?$/;
+
+            if (re.test($(this).val())) {
+                $(this).removeClass('input-error');
+            }
+             else{
+                $(this).addClass('input-error');
+
+                sub = false;
+             }
+        });
+
+        parent_fieldset.find('.stream').each(function() {
+
+            if (!$(this).val() == "") {
+                $('.dropdown-toggle4').removeClass('input-error');
+            }
+             else{
+                $('.dropdown-toggle4').addClass('input-error');
+
+                sub = false;
+             }
+        });
+
+        parent_fieldset.find('.gradpercentage').each(function() {
+
+            var re = /^\d+(\.\d+)?$/;
+            if (re.test($(this).val())) {
+                $('.gradpercentage').removeClass('input-error');
+            }
+             else{
+                $('.gradpercentage').addClass('input-error');
+
+                sub = false;
+             }
+        });
+
+
+
+        parent_fieldset.find('.graduation').each(function() {
+
+            if (!$(this).val()) {
+                $(this).removeClass('input-error');
+            }
+             else{
+                $(this).addClass('input-error');
+                next_step = false;
+             }
+        });
+
+
+        parent_fieldset.find('.role').each(function() {
+
+            if ($(this).val()) {
+                $(this).removeClass('input-error');
+            }
+             else{
+
+                $('.dropdown-toggle1').addClass('input-error');
+                next_step = false;
+             }
+        });
+
+        parent_fieldset.find('.role2').each(function() {
+
+            if ($(this).val()) {
+                $(this).removeClass('input-error');
+            }
+             else{
+
+                $('.dropdown-toggle5').addClass('input-error');
+                next_step = false;
+             }
+        });
+
+        parent_fieldset.find('.language').each(function() {
+
+            if ($(this).val()) {
+                $(this).removeClass('input-error');
+            }
+             else{
+
+                $('.dropdown-toggle2').addClass('input-error');
+                next_step = false;
+             }
+        });
+
+        parent_fieldset.find('.gender').each(function() {
+
+            if ($(this).val()) {
+                $(this).removeClass('input-error');
+            }
+             else{
+
+                $('.dropdown-toggle3').addClass('input-error');
+                next_step = false;
+             }
+        });
+
+        parent_fieldset.find('.stream').each(function() {
+
+            if ($(this).val()) {
+                $(this).removeClass('input-error');
+            }
+             else{
+
+                $('.dropdown-toggle4').addClass('input-error');
+                next_step = false;
+             }
+        });
+
+        parent_fieldset.find('.pgstream').each(function() {
+
+            if ($(this).val()) {
+                $(this).removeClass('input-error');
+            }
+             else{
+
+                $('.dropdown-toggle6').addClass('input-error');
+                next_step = false;
+             }
+        });
+        parent_fieldset.find('.zone').each(function() {
+
+            if ($(this).val()) {
+                $(this).removeClass('input-error');
+            }
+             else{
+
+                $('.dropdown-toggle7').addClass('input-error');
+                next_step = false;
+             }
+        });
+
+        parent_fieldset.find('.fam').each(function() {
+
+            if ($(this).val()) {
+                $(this).removeClass('input-error');
+            }
+             else{
+
+                $('.dropdown-toggle8').addClass('input-error');
+                next_step = false;
+             }
+        });
+
+        parent_fieldset.find('.earn').each(function() {
+
+            if ($(this).val()) {
+                $(this).removeClass('input-error');
+            }
+             else{
+
+                $('.dropdown-toggle9').addClass('input-error');
+                next_step = false;
+             }
+        });
+
+
+
+        if( next_step ) {
+            parent_fieldset.fadeOut(400, function() {
+                $(this).next().fadeIn();
+            });
+        }
+
+    });
+});
+
+
+$(document).ready(function(){
+        $('.signupb').on('click', function() {
+            // alert("ss");
+        var parent_fieldset = $(this).parents('fieldset');
+
+        var sub=true;
+
+
+                    parent_fieldset.find('.writtenenglish').each(function() {
+            // var re = /^ (Desired Role At Kaar:)$/;
+            if ($(this).val()) {
+                $(this).removeClass('input-error');
+            }
+             else{
+                // alert($(this).text());
+                $('.dropdown-toggle10').addClass('input-error');
+                sub = false;
+             }
+        });
+
+        parent_fieldset.find('.spokenenglish').each(function() {
+            // var re = /^ (Desired Role At Kaar:)$/;
+            if ($(this).val()) {
+                $(this).removeClass('input-error');
+            }
+             else{
+                // alert($(this).text());
+                $('.dropdown-toggle11').addClass('input-error');
+                sub = false;
+             }
+        });
+
+
+        parent_fieldset.find('.msoffice').each(function() {
+            // var re = /^ (Desired Role At Kaar:)$/;
+            if ($(this).val()) {
+                $(this).removeClass('input-error');
+            }
+             else{
+                // alert($(this).text());
+                $('.dropdown-toggle12').addClass('input-error');
+                sub = false;
+             }
+        });
+
+        parent_fieldset.find('.extra').each(function() {
+            // var re = /^ (Desired Role At Kaar:)$/;
+            if ($(this).val()) {
+                $(this).removeClass('input-error');
+            }
+             else{
+                // alert($(this).text());
+                $('.dropdown-toggle13').addClass('input-error');
+                sub = false;
+             }
+        });
+
+
+        $(this).find('input[type="text"], input[type="password"], input[type="date"], textarea').each(function() {
+
+            if( $(this).val() == "" ) {
+                e.preventDefault();
+                $(this).addClass('input-error');
+                sub=false;
+            }
+            else {
+                $(this).removeClass('input-error');
+            }
+        });
+
+        if(sub){
+            $('.registration-form').submit();
+        }
+
+    });
+});
+</script>
+</head>
+<body>
+
+
+<!-- <div id="preloader">
+
+  <div class="spinner-wrapper">
+            <div class="bubblingG">
+                <span id="bubblingG_1"></span>
+                <span id="bubblingG_2"></span>
+                <span id="bubblingG_3"></span>
+            </div>
+   </div>
+</div> -->
+<div id="background_cycler" >
+    <script type="text/javascript">
+        $('#background_cycler').hide(); //hide the background while the images load, ready to fade in later
+    </script>
+
+    <!-- <div class="img " style="background:url('/static/img/new/03.jpg') top left no-repeat; background-size:cover;"></div> -->
+    <!-- <div class="img " style="background:url('/static/img/new/04.jpg') top left no-repeat; background-size:cover;"></div> -->
+    <div class="img " style="background:url('/static/img/new/05.jpg') top left no-repeat; background-size:cover;"></div>
+    <div class="img " style="background:url('/static/img/new/06.jpg') top left no-repeat; background-size:cover;"></div>
+    <div class="img " style="background:url('/static/img/new/07.jpg') top left no-repeat; background-size:cover;"></div>
+    <div class="img " style="background:url('/static/img/new/08.jpg') top left no-repeat; background-size:cover;"></div>
+    <div class="img active" style="background:url('/static/img/new/09.jpg') top left no-repeat; background-size:cover;"></div>
+    <!-- <div class="img active" style="background:url('/static/img/new/10.jpg') top left no-repeat; background-size:cover;"></div> -->
+   </div>
+
+
+<div class="row">
+                        <div class="col-sm-6 col-sm-offset-2 form-box">
+<!-- <a href="kaarstudent" class="kaarstudent"><font color="#930a0a">Already Registered? Sign In </font></a> -->
+                                 {% if flag == 1 %}
+<br>
+<font color="#930a0a">Register Number Already Exists</font>
+                                 {% endif %}
+
+                            <form role="form" action="instructions" method="post" class="registration-form">
+                                 <!-- {% csrf_token %} -->
+
+                                <fieldset>
+                                    <div class="form-top">
+                                        <center><img src="{% static 'kaarlogo.jpg' %}" class="home">
+                                            <h3><font color="#930a0a"><b>KAAR TECHNOLOGIES </b></font></h3>
+                                            <h6 class="red"> YOUR SPRINGBOARD FOR A SUCCESSFUL CAREER</h6></center>
+
+                                       <p ><i>“Desire! That’s the one secret of every man’s career. Not education. Not being born with hidden talents.
+Desire.” - Johnny Carson</i><p>
+<p><i>If your ‘Desire’ is a ‘Career’…‘In pursuit of Excellence’, then ‘Kaar Technologies’ is ‘The Dream Company’
+to be in.</i></p>
+<p>To make that dream come true, we wish you great success, in the assessment process.</p>
+<center><h6 class="red"> ABOUT KAAR TECHNOLOGIES</h6></center>
+<p>
+  5000+ Man Years of SAP Consulting Experience. 550+ SAP Consultants. 1000+ Successful SAP Projects.
+15+ Global Locations. 200+ Global Customers. 15+ Industry Verticals. 10+ Years of SAP Partnership. A
+CMMi Level 3 Company (<a href="http://www.kaartech.com">www.kaartech.com</a>).
+  </p>
+  <a href="kaarstudent" class="kaarstudent"><button type="button" class="btn custom custom2">Sign In</button></a>
+<button type="button" class="btn btn-next custom  custom2 pull-right" >Sign Up</button>
+<!-- <i class="fa fa-chevron-right custom btn-next pull-right" ></i>  -->
+                                    </div>
+
+                                </fieldset>
+
+                                <fieldset>
+                                    <div class="form-top">
+                                        <div class="form-top-left">
+                                        <!--<button type="button" class=" btn btn-previous custom custom2 pull-left " >Back</button><br><br>-->
+
+                                            <h5><font color="#930a0a">VIEW JOB ROLES AVAILABLE AT KAAR TECHNOLOGIES(FOR YOUR INFORMATION ONLY)</font></h5>
+                                            <!-- <p>Tell us who you are:</p> -->
+                                        </div>
+                                        <div class="form-top-right">
+    <img src="{% static 'kaarlogo.jpg' %}">
+
+                                            <!-- <img src="{% static 'kaarlogo.jpg' %}"> -->
+                                        </div>
+                                    </div>
+                                    <div class="form-bottom">
+                                      <!-- <font size="1px" >Once the selection process is completed &amp; you receive an offer, you will be allocated into any one of the below roles &amp; trained accordingly, when you join the company. Please read the high level job description of each job role.</font> -->
+                                        <!-- <div class="form-group">
+                                            <label class="sr-only" for="form-first-name">First name</label>
+                                            <input title="" type="text" name="form-first-name" placeholder="First name.." class="form-first-name form-control" id="form-first-name">
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="sr-only" for="form-last-name">Last name</label>
+                                            <input title="" type="text" name="form-last-name" placeholder="Last name.." class="form-last-name form-control" id="form-last-name">
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="sr-only" for="form-about-yourself">About yourself</label>
+                                            <textarea name="form-about-yourself" placeholder="About yourself.."
+                                                        class="form-about-yourself form-control" id="form-about-yourself"></textarea>
+                                        </div> -->
+
+                                        <button type="button" class="btn btn-link ques" data-toggle="modal" data-target="#myModal">A) Trainee - HR (Talent Engagement):</button>
+<div id="myModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">A) Trainee - HR (Talent Engagement):</h4>
+      </div>
+      <div class="modal-body">
+        Support in fun at work &amp; CSR activities, sports activities, corporate
+HR communications, videography, photography, blog writing, online &amp; offline events.
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+
+                  <div id="demo" class="collapse">
+        Support in fun at work &amp; CSR activities, sports activities, corporate
+HR communications, videography, photography, blog writing, online &amp; offline events.
+                  </div>
+                <br>
+
+                <button type="button" class="btn btn-link ques" data-toggle="modal" data-target="#myModal1">B) Trainee - HR (Talent Operations):</button>
+
+                <div id="myModal1" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">B) Trainee - HR (Talent Operations):</h4>
+      </div>
+      <div class="modal-body">
+         Supporting in SAP SuccessFactors entries, joining &amp; onboarding
+process, exit process, induction program &amp; report preparation.
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+
+
+                  <div id="demo1" class="collapse">
+     Supporting in SAP SuccessFactors entries, joining &amp; onboarding
+process, exit process, induction program &amp; report preparation.
+                  </div>
+                <br>
+                <button type="button" class="btn btn-link ques" data-toggle="modal" data-target="#myModal2">C) Trainee - HR (Compensation &amp; Benefits):</button>
+
+                <div id="myModal2" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">C) Trainee - HR (Compensation &amp; Benefits):</h4>
+      </div>
+      <div class="modal-body">
+          Supporting in payroll processing, timesheet management,
+HR legal compliance &amp; PF, employee query handling, salary revision process, confirmation process,
+preparing deputation &amp; bonafied letters.
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+
+                  <div id="demo2" class="collapse">
+                  Supporting in payroll processing, timesheet management,
+HR legal compliance &amp; PF, employee query handling, salary revision process, confirmation process,
+preparing deputation &amp; bonafied letters.
+                  </div>
+                <br>
+                <button type="button" class="btn btn-link ques" data-toggle="modal" data-target="#myModal3">D) Trainee - HR (Talent Management):</button>
+
+                <div id="myModal3" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">D) Trainee - HR (Talent Management):</h4>
+      </div>
+      <div class="modal-body">
+      Supporting in SAP Successfactors Implementation,
+Organizational Change/Culture/Development/Learning initiatives, training programme coordination,
+assessments creation &amp; skill enhancement.
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+
+                  <div id="demo3" class="collapse">
+                   Supporting in SAP Successfactors Implementation,
+Organizational Change/Culture/Development/Learning initiatives, training programme coordination,
+assessments creation &amp; skill enhancement.
+
+
+                  </div>
+                                  <button type="button" class="btn btn-link ques" data-toggle="modal" data-target="#myModal4">E) Trainee - HR (Talent Acquisition): </button>
+
+                <div id="myModal4" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">E) Trainee - HR (Talent Acquisition): </h4>
+      </div>
+      <div class="modal-body">
+      Supporting lateral &amp; fresher hiring, weekend drives, recruitment &amp;
+selection process, SAP SuccessFactors entries, resource management, referral program &amp; reports.
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+                              <button type="button" class="btn btn-link ques" data-toggle="modal" data-target="#myModal5">F) Trainee - HR (Global Mobility): </button>
+
+                <div id="myModal5" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">F) Trainee - HR (Global Mobility):</h4>
+      </div>
+      <div class="modal-body">
+      Supporting in local &amp; international ticketing &amp; travel, visa process,
+travel insurance process, accommodation process &amp; cost optimization plans.
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+                              <button type="button" class="btn btn-link ques" data-toggle="modal" data-target="#myModal6">G) Trainee - HR (Administration): </button>
+
+                <div id="myModal6" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">G) Trainee - HR (Administration):</h4>
+      </div>
+      <div class="modal-body">
+      Supporting in facility management &amp; administration, transactional
+tasks, events coordination, cost optimization plans &amp; report preparation.
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+                  <!-- <p> -->
+<!--                     A) Trainee - HR (Talent Engagement):
+B) Trainee - HR (Talent Operations):
+C) Trainee - HR (Compensation &amp; Benefits):
+D) Trainee - HR (Talent Management):
+E) Trainee - HR (Talent Acquisition):
+F) Trainee - HR (Global Mobility):
+G) Trainee - HR (Administration):  -->
+                  <!-- </p> -->
+                <!-- <br><br><br><br><br><br> -->
+                <br><br><br>
+                                        <button type="button" class="btn btn-previous custom custom2 up">Back</button></a>
+                                        <button type="button" class="btn btn-next custom custom2 up1">Next</button>
+                                    </div>
+                                </fieldset>
+
+
+                                <fieldset>
+                                    <div class="form-top">
+                                        <div class="form-top-left">
+                                        <!--<button type="button" class=" btn btn-previous custom custom2 pull-left " >Back</button>-->
+
+                                            <br><h3>Step 1 / 4</h3>
+                                            <p>Personal Information form</p>
+                                        </div>
+                                        <div class="form-top-right">
+                                            <img src="{% static 'kaarlogo.jpg' %}">
+                                        </div>
+                                    </div>
+                                    <div class="form-bottom">
+                                        <div class="form-group">
+                                            <label title="Ex. John Doe" class="sr-only" for="form-first-name">Full Name (As per University Records):</label>
+                                            <input title="Full Name(ex. John Doe)" type="text" name="name" placeholder="Full Name(ex. John Doe)" class="form-first-name form-control name" id="form-first-name" style="font-family:Arial, FontAwesome" >
+                                        </div>
+                                        <div class="form-group">
+<!--                                            <label class="sr-only" for="form-last-name">Desired Role1 At Kaar:</label>-->
+<!--                                            <div class="dropdown dropdown1">-->
+<!--  <button class="btn dropdown-toggle dropdown-toggle1" type="button" data-toggle="dropdown">Desired Role1 At Kaar:-->
+<!--  <span class='caret'></span></button>-->
+<!--  <ul class="dropdown-menu dropdown-menu1">-->
+<!--<li><a href="#">Trainee - HR (Talent Engagement) </a></li>-->
+<!--<li><a href="#">Trainee - HR (Talent Operations) </a></li>-->
+<!--<li><a href="#">Trainee - HR (Compensation &amp; Benefits)</a></li>-->
+<!--<li><a href="#">Trainee - HR (Talent Management) </a></li>-->
+<!--<li><a href="#">Trainee - HR (Talent Acquisition)</a></li>-->
+<!--<li><a href="#">Trainee - HR (Global Mobility) </a></li>-->
+<!--<li><a href="#">Trainee - HR (Administration) </a></li>-->
+<!--  </ul>-->
+<!--</div>-->
+<input title="" type="hidden" name="role" class="role" value="none">
+
+                                        </div>
+                                          <div class="form-group">
+<!--                                            <label class="sr-only" for="form-last-name">Desired Role2 At Kaar:</label>-->
+<!--                                            <div class="dropdown dropdown5">-->
+<!--  <button class="btn dropdown-toggle dropdown-toggle5" type="button" data-toggle="dropdown">Desired Role2 At Kaar:-->
+<!--  <span class='caret'></span></button>-->
+<!--  <ul class="dropdown-menu dropdown-menu5">-->
+<!--<li><a href="#">Trainee - HR (Talent Engagement) </a></li>-->
+<!--<li><a href="#">Trainee - HR (Talent Operations) </a></li>-->
+<!--<li><a href="#">Trainee - HR (Compensation &amp; Benefits)</a></li>-->
+<!--<li><a href="#">Trainee - HR (Talent Management) </a></li>-->
+<!--<li><a href="#">Trainee - HR (Talent Acquisition)</a></li>-->
+<!--<li><a href="#">Trainee - HR (Global Mobility) </a></li>-->
+<!--<li><a href="#">Trainee - HR (Administration) </a></li>-->
+    <!-- <li ><a  href="#">None</a></li> -->
+<!--  </ul>-->
+<!--</div>-->
+<input title="" type="hidden" name="role2" class="role2" value="none">
+
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="sr-only" for="form-last-name">Student ID No. (As per University Records):</label>
+                                            <input title="Student ID No. (As per University Records):" type="text" name="regno" placeholder="Student ID No. (As per University Records):" class="form-last-name form-control id" id="form-last-name" >
+                                        </div>
+
+                                         <div class="form-group">
+                                            <label class="sr-only" for="form-last-name">Personal Email ID:</label>
+                                            <input title="Personal Email ID: (ex. john@live.in)" type="text" name="email" placeholder="Personal Email ID: (ex. john@live.in)" class="form-last-name form-control email" id="form-last-name " >
+                                        </div>
+
+                                         <div class="form-group">
+                                            <label class="sr-only" for="form-last-name">Personal Mobile Number:</label>
+                                            <input size="10" maxlength="10" title="Personal Mobile Number: (ex. 9192939495)" type="text" name="mobileno" placeholder="Personal Mobile Number: (ex. 9192939495)" class="form-last-name form-control phone" id="form-last-name" >
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="sr-only" for="form-first-name">Alternate Mobile/Landline Number:</label>
+                                            <input size="10" pattern="{10}" maxlength="11" title="Alternate Mobile/Landline Number:(ex. 04421232425)" type="text" name="altnumber" placeholder="Alternate Mobile/Landline Number:(ex. 04421232425)" class="form-first-name form-control altphone" id="form-first-name" >
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="sr-only" for="form-last-name">Mother Tongue:</label>
+                                            <div class="dropdown dropdown2">
+  <button class="btn dropdown-toggle dropdown-toggle2" type="button" data-toggle="dropdown">Mother Tongue:
+  <span class='caret'></span></button>
+  <ul class="dropdown-menu dropdown-menu2">
+    <li><a href="#">Hindi </a></li>
+<li><a href="#"> Bengali </a></li>
+<li><a href="#"> Telugu </a></li>
+<li><a href="#"> Marathi </a></li>
+<li><a href="#"> Tamil </a></li>
+<li><a href="#"> Kannada </a></li>
+<li><a href="#"> Gujarati </a></li>
+<li><a href="#">Odia </a></li>
+<li><a href="#"> Malayalam </a></li>
+<li><a href="#"> Sanskrit </a></li>
+<li><a href="#">Assamese </a></li>
+<li><a href="#"> Bodo </a></li>
+<li><a href="#"> Dogri </a></li>
+<li><a href="#"> Kashmiri </a></li>
+<li><a href="#"> Konkani </a></li>
+<li><a href="#"> Maithili </a></li>
+<li><a href="#">Malayalam </a></li>
+<li><a href="#"> Manipuri </a></li>
+<li><a href="#"> Marathi </a></li>
+<li><a href="#"> Nepali </a></li>
+<li><a href="#"> Odia </a></li>
+<li><a href="#"> Punjabi </a></li>
+<li><a href="#"> Sanskrit </a></li>
+<li><a href="#"> Santali </a></li>
+<li><a href="#"> Sindhi </a></li>
+<li><a href="#"> Urdu </a></li>
+  </ul>
+</div>
+<input title="" type="hidden" name="language" class="language" value="">
+
+                                            <!-- <select>
+  <option value="volvo">Trainee - Software</option>
+  <option value="saab">Trainee - Business Development</option>
+  <option value="mercedes">Trainee - Presales</option>
+  <option value="audi">Trainee – Marketing</option>
+</select> -->
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="sr-only" for="form-last-name">Date Of Birth: dd/mm/yy</label>
+                                            <input title="Date Of Birth: dd/mm/yy (ex. 13/05/1995)" type="date" name="dob"  class="form-last-name form-control date" max="1999-12-31"  id="form-last-name" >
+                                        </div>
+
+                                         <div class="form-group">
+                                            <label class="sr-only" for="form-last-name">Gender :</label>
+                                                                                   <div class="dropdown dropdown3">
+  <button class="btn dropdown-toggle dropdown-toggle3" type="button" data-toggle="dropdown">Gender :
+  <span class='caret'></span></button>
+  <ul class="dropdown-menu dropdown-menu3">
+
+<li><a href="#"> Male </a></li>
+<li><a href="#"> Female </a></li>
+
+  </ul>
+</div><br><br>
+                                        </div>
+<input title="" type="hidden" name="gender" class="gender" value="">
+                                         <!--<br><br><br><br><br>-->
+                                        <!-- <div class="form-group">
+                                            <label class="sr-only" for="form-about-yourself">About yourself</label>
+                                            <textarea name="form-about-yourself" placeholder="About yourself.."
+                                                        class="form-about-yourself form-control" id="form-about-yourself"></textarea>
+                                        </div> -->
+                                        <!--<button type="button" class=" btn btn-next custom custom2 pull-right up" >Next</button>-->
+                                        <button type="button" class="btn btn-previous custom custom2 up">Back</button></a>
+                                        <button type="button" class="btn btn-next custom custom2 up1">Next</button>
+                                    </div>
+                                </fieldset>
+
+                                <!--<fieldset>-->
+                                <!--    <div class="form-top">-->
+                                <!--        <div class="form-top-left">-->
+                                <!--            <i class="fa fa-chevron-left custom btn-previous" ></i>-->
+                                <!--            <h3>Step 2 / 4</h3>-->
+                                <!--            <p>Personal Information :</p>-->
+                                <!--        </div>-->
+                                <!--        <div class="form-top-right">-->
+                                <!--            <img src="{% static 'kaarlogo.jpg' %}">-->
+                                <!--        </div>-->
+                                <!--    </div>-->
+                                <!--    <div class="form-bottom">-->
+
+
+
+                                         <!-- <div class="form-group">
+                                <!--            <label class="sr-only" for="form-last-name">Personal Mobile Number:</label>-->
+                                <!--            <input title="" type="text" name="form-last-name" placeholder="Personal Mobile Number:" class="form-last-name form-control" id="form-last-name">-->
+                                <!--        </div> -->
+                                <!--        <br><br><br><br><br>-->
+                                <!--        <div class="row">-->
+                                <!--            <div class="col-md-12">-->
+
+                                <!--        <i class="fa fa-chevron-right custom btn-next pull-right" ></i>-->
+                                <!--        </div>-->
+                                <!--        </div>-->
+
+                                <!--    </div>-->
+                                <!--</fieldset>-->
+
+
+
+
+
+                                <fieldset>
+                                    <div class="form-top">
+                                        <div class="form-top-left">
+                                        <!--<button type="button" class=" btn btn-previous custom custom2 pull-left " >Back</button>-->
+
+                                            <h3>Step 2 / 4</h3>
+                                            <p>PERSONAL INFORMATION FORM</p>
+                                        </div>
+                                        <div class="form-top-right">
+                                            <img src="{% static 'kaarlogo.jpg' %}">
+                                        </div>
+                                    </div>
+                                    <div class="form-bottom">
+                                        <div class="form-group">
+                                            <label class="sr-only" for="form-facebook">10th Percentage (%):</label>
+                                            <input title="10th Percentage (%): (ex. 80)" type="text" name="tenth" placeholder="10th Percentage (%): (ex. 80)" class="form-facebook form-control tenpercentage" id="form-facebook" >
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="sr-only" for="form-twitter">12th Percentage (%):</label>
+                                            <input title="12th Percentage (%): (ex. 80)" type="text" name="twelth" placeholder="12th Percentage (%): (ex. 80)" class="form-twitter form-control twpercentage" id="form-twitter" >
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="sr-only" for="form-google-plus">Name of Under Graduation College</label>
+                                            <input title="Name of Under Graduation College: (ex. kaar institute of technology)" type="text" name="college" placeholder=" Name of Under Graduation College: (ex. kaar institute of technology)" class="form-google-plus form-control college" id="form-google-plus" >
+                                        </div>
+
+
+
+                                         <div class="form-group">
+                                            <label class="sr-only" for="form-google-plus">Graduation Stream:</label>
+                                              <div class="dropdown dropdown4">
+  <button class="btn dropdown-toggle dropdown-toggle4" type="button" data-toggle="dropdown">Graduation Stream:
+  <span class='caret'></span></button>
+  <ul class="dropdown-menu dropdown-menu4">
+
+<li><a href="#">B.Com. - Commerce</a></li>
+<li><a href="#">B.Com. - Commerce &amp; Computer Application</a></li>
+<li><a href="#">B.Com. - Business Processing System</a></li>
+<li><a href="#">B.Com. - Capital Marketing</a></li>
+<li><a href="#">B.Com. - Personal Accounting</a></li>
+<li><a href="#">B.A. - Economics</a></li>
+<li><a href="#">B.A. - History</a></li>
+<li><a href="#">B.A. - English Literature</a></li>
+<li><a href="#">B.A. - Sociology</a></li>
+<li><a href="#">B.A. - Tourism &amp; Travel Management</a></li>
+<li><a href="#">B.A. - Social Work</a></li>
+<li><a href="#">B.A. - Corporate Secretaryship</a></li>
+<li><a href="#">B.Sc. - Mathematics</a></li>
+<li><a href="#">B.Sc. - Statistics</a></li>
+<li><a href="#">B.Sc. - Physics</a></li>
+<li><a href="#">B.Sc. - Chemistry</a></li>
+<li><a href="#">B.Sc. - Botany</a></li>
+<li><a href="#">B.Sc. - Zoology</a></li>
+<li><a href="#">B.Sc. - Geology</a></li>
+<li><a href="#">B.Sc. - Micro-Biology</a></li>
+<li><a href="#">B.Sc. - Actuarial Science</a></li>
+<li><a href="#">B.Sc. - Environmental Sciences</a></li>
+<li><a href="#">B.Sc. - Media &amp; Communication</a></li>
+<li><a href="#">B.Sc. - Visual Communication</a></li>
+<li><a href="#">B.B.A. - Business Administration</a></li>
+<li><a href="#">B.B.A. - Business Administration &amp; Computer Applications</a></li>
+<li><a href="#">B.B.M. - Business Management</a></li>
+<li><a href="#">Others</a></li>
+
+  </ul>
+<input title="" type="hidden" name="stream" class="stream" value="">
+                                        </div>
+                                    </div>
+
+                                       <div class="form-group">
+                                            <label class="sr-only" for="form-google-plus">Graduation Percentage - Till Date (%):</label>
+                                            <input title="Graduation Percentage - Till Date (%): (ex. 80)" type="text" name="graduation" placeholder="Graduation Percentage - Till Date (%): (ex. 80)" class="form-google-plus form-control gradpercentage" id="form-google-plus" >
+                                        </div>
+                                          <div class="form-group">
+                                            <label class="sr-only" for="form-google-plus">Name of Post Graduation College:</label>
+                                            <input title="Name of Post Graduation College:" type="text" name="pgcollege" placeholder="Name of Post Graduation College:" class="form-google-plus form-control pgcolg" id="form-google-plus" >
+                                        </div>
+
+
+
+                                         <div class="form-group">
+                                            <label class="sr-only" for="form-google-plus">Post Graduation Stream:</label>
+                                              <div class="dropdown dropdown6">
+  <button class="btn dropdown-toggle dropdown-toggle6" type="button" data-toggle="dropdown">Post Graduation Stream:
+  <span class='caret'></span></button>
+  <ul class="dropdown-menu dropdown-menu6">
+
+<li><a href="#">M.Com. - Commerce</a></li>
+<li><a href="#">M.Com. - Commerce &amp; Computer Application</a></li>
+<li><a href="#">M.Com. - International Business</a></li>
+<li><a href="#">M.A. - Economics</a></li>
+<li><a href="#">M.A. - History</a></li>
+<li><a href="#">M.A. - English Literature</a></li>
+<li><a href="#">M.A. - Sociology</a></li>
+<li><a href="#">M.A. - Tourism &amp; Travel Management</a></li>
+<li><a href="#">M.A. - Social Work (Human Resource Management)</a></li>
+<li><a href="#">M.A. - Human Resource Management </a></li>
+<li><a href="#">M.A. - Corporate Secretaryship</a></li>
+<li><a href="#">M.Sc. - Mathematics</a></li>
+<li><a href="#">M.Sc. - Statistics</a></li>
+<li><a href="#">M.Sc. - Physics</a></li>
+<li><a href="#">M.Sc. - Chemistry</a></li>
+<li><a href="#">M.Sc. - Botany</a></li>
+<li><a href="#">M.Sc. - Zoology</a></li>
+<li><a href="#">M.Sc. - Geology</a></li>
+<li><a href="#">M.Sc. - Micro-Biology</a></li>
+<li><a href="#">M.Sc. - Actuarial Science</a></li>
+<li><a href="#">M.Sc. - Environmental Sciences</a></li>
+<li><a href="#">M.Sc. - Media &amp; Communication</a></li>
+<li><a href="#">M.Sc. - Visual Communication</a></li>
+<li><a href="#">Not Applicable</a></li>
+
+  </ul>
+<input title="" type="hidden" name="pgstream" class="pgstream" value="">
+                                        </div>
+                                    </div>
+
+                                        <!--<br><br><br>-->
+                                        <div class="row">
+                                            <div class="col-md-12"><br><br>
+
+                                        <!--<button type="button" class=" btn btn-next custom custom2 pull-right up" >Next</button>-->
+                                        <button type="button" class="btn btn-previous custom custom2 up">Back</button></a>
+                                        <button type="button" class="btn btn-next custom custom2 up1">Next</button>
+                                        </div>
+                                        </div>
+
+                                    </div>
+                                </fieldset>
+
+
+
+
+                                <fieldset>
+                                    <div class="form-top">
+                                        <div class="form-top-left">
+                                            <!--<button type="button" class=" btn btn-previous custom custom2 pull-left " >Back</button>-->
+                                            <h3>Step 3 / 4</h3>
+                                            <p>Personal Information :</p>
+                                        </div>
+                                        <div class="form-top-right">
+                                            <img src="{% static 'kaarlogo.jpg' %}">
+                                        </div>
+                                    </div>
+                                    <div class="form-bottom">
+
+                                        <div class="form-group">
+                                            <label class="sr-only" for="form-google-plus">Post Graduation Percentage(%):</label>
+                                            <input title="Graduation Percentage - Till Date (%): (ex. 80)" type="text" name="pggraduation" placeholder="Graduation Percentage - Till Date (%): (ex. 80)" class="form-google-plus form-control gradpercentage" id="form-google-plus" >
+                                        </div>
+
+
+                                         <div class="form-group">
+                                             <center><font size="0.5px">Name of Zone (Where Your Current College Is Located):</font size="5px"></center>
+                                            <label class="sr-only" for="form-google-plus">Name of Zone (Where Your Current College Is Located):</label>
+                                              <div class="dropdown dropdown7">
+  <button class="btn dropdown-toggle dropdown-toggle7" type="button" data-toggle="dropdown">Select Zone:
+  <span class='caret'></span></button>
+  <ul class="dropdown-menu dropdown-menu7">
+
+<li><a href="#">Coimbatore</a></li>
+<li><a href="#">Salem</a></li>
+<li><a href="#">Erode</a></li>
+<li><a href="#">Namakkal</a></li>
+<li><a href="#">Trichy</a></li>
+
+
+  </ul>
+<input title="" type="hidden" name="zone" class="zone" value="">
+                                        </div>
+                                    </div>
+
+                                         <div class="form-group">
+                                             <center><font size="0.5px">Total Number of Members In Your Family (Excluding You):</font></center>
+                                            <label class="sr-only" for="form-google-plus">Total Number of Members In Your Family (Excluding You):</label>
+                                              <div class="dropdown dropdown8">
+  <button class="btn dropdown-toggle dropdown-toggle8" type="button" data-toggle="dropdown">Number of Members:
+  <span class='caret'></span></button>
+  <ul class="dropdown-menu dropdown-menu8">
+
+<li><a href="#">1</a></li>
+<li><a href="#">2</a></li>
+<li><a href="#">3</a></li>
+<li><a href="#">4</a></li>
+<li><a href="#">5</a></li>
+<li><a href="#">6</a></li>
+<li><a href="#">7</a></li>
+<li><a href="#">8</a></li>
+<li><a href="#">9</a></li>
+<li><a href="#">10</a></li>
+<!-- <li><a href="#">5</a></li>
+<li><a href="#">5</a></li> -->
+
+
+  </ul>
+<input title="" type="hidden" name="fam" class="fam" value="">
+                                        </div>
+                                    </div>
+
+
+                                         <div class="form-group">
+                                             <center><font size="0.5px">Total Number of Earning Members In Your Family (Excluding You):</font></center>
+                                            <label class="sr-only" for="form-google-plus">Total Number of Earning Members In Your Family (Excluding You):</label>
+                                              <div class="dropdown dropdown9">
+  <button class="btn dropdown-toggle dropdown-toggle9" type="button" data-toggle="dropdown">Number of Earning Members:
+  <span class='caret'></span></button>
+  <ul class="dropdown-menu dropdown-menu9">
+
+<li><a href="#">1</a></li>
+<li><a href="#">2</a></li>
+<li><a href="#">3</a></li>
+<li><a href="#">4</a></li>
+<li><a href="#">5</a></li>
+<li><a href="#">6</a></li>
+<li><a href="#">7</a></li>
+<li><a href="#">8</a></li>
+<li><a href="#">9</a></li>
+<li><a href="#">10</a></li>
+<!-- <li><a href="#">5</a></li>
+<li><a href="#">5</a></li> -->
+
+
+  </ul>
+<input title="" type="hidden" name="earn" class="earn" value="">
+                                        </div>
+                                    </div>
+
+
+
+
+
+                                         <!-- <div class="form-group">
+                                            <label class="sr-only" for="form-last-name">Personal Mobile Number:</label>
+                                            <input title="" type="text" name="form-last-name" placeholder="Personal Mobile Number:" class="form-last-name form-control" id="form-last-name">
+                                        </div> -->
+
+                                        <div class="row">
+                                            <div class="col-md-12"><br><br>
+
+                                       <button type="button" class="btn btn-previous custom custom2 up">Back</button></a>
+                                        <button type="button" class="btn btn-next custom custom2 up1">Next</button>
+                                        </div>
+                                        </div>
+
+                                    </div>
+                                </fieldset>
+
+
+                                <fieldset>
+                                    <div class="form-top">
+                                        <div class="form-top-left">
+                                        <!--<button type="button" class=" btn btn-previous custom custom2 pull-left " >Back</button>-->
+
+                                            <h3>Step 4 / 4</h3>
+                                            <p>PERSONAL INFORMATION FORM</p>
+                                        </div>
+                                        <div class="form-top-right">
+                                            <img src="{% static 'kaarlogo.jpg' %}">
+                                        </div>
+                                    </div>
+                                    <div class="form-bottom">
+<!--                                         <div class="form-group">
+                                            <label class="sr-only" for="form-facebook">10th Percentage (%):</label>
+                                            <input title="10th Percentage (%): (ex. 80)" type="text" name="tenth" placeholder="10th Percentage (%): (ex. 80)" class="form-facebook form-control tenpercentage" id="form-facebook" >
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="sr-only" for="form-twitter">12th Percentage (%):</label>
+                                            <input title="12th Percentage (%): (ex. 80)" type="text" name="twelth" placeholder="12th Percentage (%): (ex. 80)" class="form-twitter form-control twpercentage" id="form-twitter" >
+                                        </div> -->
+                                        <div class="form-group">
+                                            <label class="sr-only" for="form-google-plus">Name of Father's Profession:</label>
+                                            <input title="Graduation Percentage - Till Date (%): (ex. 80)" type="text" name="fatherprof" placeholder="Name of Father's Profession:" class="form-google-plus form-control gradpercentage" id="form-google-plus" >
+                                        </div>
+                                       <div class="form-group">
+                                            <label class="sr-only" for="form-google-plus">Name of Mother's Profession:</label>
+                                            <input title="Graduation Percentage - Till Date (%): (ex. 80)" type="text" name="motherprof" placeholder="Name of Mother's Profession:" class="form-google-plus form-control gradpercentage" id="form-google-plus" >
+                                        </div>
+                                         <div class="form-group">
+<center><p>Rating (1 is lowest &amp; 10 is highest): </p></center>
+
+                                            <label class="sr-only" for="form-google-plus">Written English Proficiency </label>
+                                              <div class="dropdown dropdown10">
+  <button class="btn dropdown-toggle dropdown-toggle10" type="button" data-toggle="dropdown">Written English Proficiency
+  <span class='caret'></span></button>
+  <ul class="dropdown-menu dropdown-menu10">
+
+<li><a href="#">1</a></li>
+<li><a href="#">2</a></li>
+<li><a href="#">3</a></li>
+<li><a href="#">4</a></li>
+<li><a href="#">5</a></li>
+<li><a href="#">6</a></li>
+<li><a href="#">7</a></li>
+<li><a href="#">8</a></li>
+<li><a href="#">9</a></li>
+<li><a href="#">10</a></li>
+<!-- <li><a href="#">5</a></li>
+<li><a href="#">5</a></li> -->
+
+
+  </ul>
+<input title="" type="hidden" name="writtenenglish" class="writtenenglish" value="">
+                                        </div>
+                                    </div>
+                                      <div class="form-group">
+                                            <label class="sr-only" for="form-google-plus">Spoken English Proficiency </label>
+                                              <div class="dropdown dropdown11">
+  <button class="btn dropdown-toggle dropdown-toggle11" type="button" data-toggle="dropdown">Spoken English Proficiency
+  <span class='caret'></span></button>
+  <ul class="dropdown-menu dropdown-menu11">
+
+<li><a href="#">1</a></li>
+<li><a href="#">2</a></li>
+<li><a href="#">3</a></li>
+<li><a href="#">4</a></li>
+<li><a href="#">5</a></li>
+<li><a href="#">6</a></li>
+<li><a href="#">7</a></li>
+<li><a href="#">8</a></li>
+<li><a href="#">9</a></li>
+<li><a href="#">10</a></li>
+<!-- <li><a href="#">5</a></li>
+<li><a href="#">5</a></li> -->
+
+
+  </ul>
+<input title="" type="hidden" name="spokenenglish" class="spokenenglish" value="">
+                                        </div>
+                                    </div>
+
+                                      <div class="form-group">
+                                            <label class="sr-only" for="form-google-plus">MS-Office Proficiency </label>
+                                              <div class="dropdown dropdown12">
+  <button class="btn dropdown-toggle dropdown-toggle12" type="button" data-toggle="dropdown">MS-Office Proficiency
+  <span class='caret'></span></button>
+  <ul class="dropdown-menu dropdown-menu12">
+
+<li><a href="#">1</a></li>
+<li><a href="#">2</a></li>
+<li><a href="#">3</a></li>
+<li><a href="#">4</a></li>
+<li><a href="#">5</a></li>
+<li><a href="#">6</a></li>
+<li><a href="#">7</a></li>
+<li><a href="#">8</a></li>
+<li><a href="#">9</a></li>
+<li><a href="#">10</a></li>
+<!-- <li><a href="#">5</a></li>
+<li><a href="#">5</a></li> -->
+
+
+  </ul>
+<input title="" type="hidden" name="msoffice" class="msoffice" value="">
+                                        </div>
+                                    </div>
+
+
+                                      <div class="form-group">
+                                            <label class="sr-only" for="form-google-plus">Extra-Curricular Activities </label>
+                                              <div class="dropdown dropdown13">
+  <button class="btn dropdown-toggle dropdown-toggle13" aria-expanded="true" type="button" data-toggle="dropdown">Extra-Curricular Activities
+  <span class='caret'></span></button>
+<ul class="dropdown-menu13 dropdown-menu">
+<li><a href="#"><input type="checkbox">&nbsp;Sports &amp; Games Team Leader</a></li>
+<!--<li><a href="#"><input type="checkbox">&nbsp; </a></li>-->
+<li><a href="#"><input type="checkbox">&nbsp; Sports &amp; Games Team Member </a></li>
+<li><a href="#"><input type="checkbox">&nbsp; Cultural Team Leader </a></li>
+<li><a href="#"><input type="checkbox">&nbsp; Cultural Team Member </a></li>
+<li><a href="#"><input type="checkbox">&nbsp; NCC Leader </a></li>
+<li><a href="#"><input type="checkbox">&nbsp; NCC Member </a></li>
+<li><a href="#"><input type="checkbox">&nbsp; NSS Leader </a></li>
+<li><a href="#"><input type="checkbox">&nbsp; NSS Member </a></li>
+<li><a href="#"><input type="checkbox">&nbsp; Rotaract Leader </a></li>
+<li><a href="#"><input type="checkbox">&nbsp; Rotaract Member </a></li>
+<li><a href="#"><input type="checkbox">&nbsp; Women’s Cell Leader </a></li>
+<li><a href="#"><input type="checkbox">&nbsp; Women’s Cell Member </a></li>
+<li><a href="#"><input type="checkbox">&nbsp; AICUF Leader </a></li>
+<li><a href="#"><input type="checkbox">&nbsp; AICUF Member </a></li>
+<li><a href="#"><input type="checkbox">&nbsp; ExNoRa Leader </a></li>
+<li><a href="#"><input type="checkbox">&nbsp; ExNoRa Member </a></li>
+<li><a href="#"><input type="checkbox">&nbsp;Outreach Program Leader </a></li>
+<li><a href="#"><input type="checkbox">&nbsp; Outreach Program Member </a></li>
+<li><a href="#"><input type="checkbox">&nbsp; Red Cross Leader </a></li>
+<li><a href="#"><input type="checkbox">&nbsp; Red Cross Member </a></li>
+<li><a href="#"><input type="checkbox">&nbsp; Hostel Student Leader </a></li>
+<li><a href="#"><input type="checkbox">&nbsp; Club Leader </a></li>
+<li><a href="#"><input type="checkbox">&nbsp; Club Member </a></li>
+<li><a href="#"><input type="checkbox">&nbsp; Committee Leader </a></li>
+<li><a href="#"><input type="checkbox">&nbsp; Committee Member </a></li>
+<li><a href="#"><input type="checkbox">&nbsp; Department Student Leader </a></li>
+<li><a href="#"><input type="checkbox">&nbsp; Transfer Program Participant </a></li>
+<li><a href="#"><input type="checkbox">&nbsp; Community Service Leader </a></li>
+<li><a href="#"><input type="checkbox">&nbsp; Community Service Member </a></li>
+<li><a href="#"><input type="checkbox">&nbsp; Symposium or Conference Team Leader </a></li>
+<li><a href="#"><input type="checkbox">&nbsp; Symposium or Conference Team Member
+</ul>
+<input title="" type="hidden" name="extra" class="extra" value="">
+                                        </div><br><br>
+                                    </div>
+
+
+                                        <button type="button" class="btn btn-previous custom custom2 up2">Back</button></a>
+                                        <button type="button" class="btn custom custom2 pull-right  signupb">Register</button>
+                                    </div>
+                                </fieldset>
+                                {% csrf_token %}
+
+
+                            </form>
+
+<br><br>
+
+
+<br>
+</div>
+</div>
+
+<script src="{% static 'js/slideshow.js' %}" type="text/javascript"></script>
+<!-- <script
+  src="{% static 'https://code.jquery.com/jquery-3.2.1.js' %}"
+  integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE="
+  crossorigin="anonymous"></script> -->
+<!-- <script src="{% static 'js/bootstrap-datepicker.js' %}"></script> -->
+
+ <script src="{% static 'assets/js/jquery-1.11.1.min.js' %}"></script>
+        <script src="{% static 'assets/bootstrap/js/bootstrap.min.js' %}"></script>
+        <script src="{% static 'assets/js/jquery.backstretch.min.js' %}"></script>
+        <!-- <script src="{% static 'assets/js/retina-1.1.0.min.js' %}"></script> -->
+        <!-- <script src="{% static 'assets/js/placeholder.js' %}"></script> -->
+        <script src="{% static 'assets/js/scripts.js' %}"></script>
+</body>
+<footer>
+    <div class="foot">
+
+    <img src="{% static 'img/foot1.png' %}" class="end end1">
+
+
+    <img src="{% static 'img/foot2.png' %}" class="end workforce">
+
+
+    <img src="{% static 'img/foot3.png' %}" class="end">
+
+
+    <img src="{% static 'img/foot4.PNG' %}" class="end end2">
+
+</div>
+</footer>
+</html>
